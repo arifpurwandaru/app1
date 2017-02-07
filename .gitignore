@@ -75,3 +75,5 @@ gradle/
 .idea/
 
 local.properties
+
+misc.xml

@@ -14,13 +14,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import ss.com.bannerslider.banners.RemoteBanner;
 import ss.com.bannerslider.events.OnBannerClickListener;
 import un.app1.MainApp;
 import un.app1.R;
 import un.app1.apphome.adapter.ProductAdapter;
 import un.app1.apphome.model.ArrayBanner;
-import un.app1.apphome.model.Banner;
 import un.app1.apphome.model.SubmitBanner;
 import un.app1.apphome.model.SubmitQuickPreview;
 import un.app1.databinding.ActivityHomeBinding;
@@ -75,7 +73,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     }
 
     private void onClickBanner(){
-        binding.bannerSlider1.setOnBannerClickListener(new OnBannerClickListener() {
+        binding.bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
 
             @Override
             public void onClick(int position) {
@@ -144,7 +142,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
     @Override
     public void bannserSize(List<ArrayBanner> arrayBanners) {
-        homePresenter.setBanner(binding.bannerSlider1, arrayBanners);
+        homePresenter.setBanner(binding.bannerSlider, arrayBanners);
     }
 
     @Override

@@ -32,14 +32,14 @@
             android:background="@color/colorDarkWhite">
 
             <ss.com.bannerslider.views.BannerSlider
-                android:id="@+id/banner_slider1"
+                android:id="@+id/banner_slider"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:animateIndicators="true"
                 app:defaultIndicators="dash"
                 app:hideIndicators="false"
                 app:indicatorSize="10dp"
-                app:interval="5000"
+                app:interval="5500"
                 app:loopSlides="true" />
 
             <TextView
@@ -64,7 +64,6 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/layoutBanner"
             android:background="#FFFFFF">
-
 
             <RelativeLayout
                 android:id="@+id/layoutHomeDashboardChecking"

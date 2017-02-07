@@ -14,6 +14,6 @@ public class Banner {
     public String statusCode;
 
     @SerializedName("banner")
-    public List<Banner> banner = new ArrayList<Banner>();
+    public ArrayList<ArrayBanner> arrayBanners = new ArrayList<ArrayBanner>();
 
 }

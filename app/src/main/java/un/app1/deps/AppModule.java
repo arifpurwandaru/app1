@@ -1,9 +1,12 @@
 package un.app1.deps;
 
+import android.content.Context;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import ss.com.bannerslider.views.BannerSlider;
 import un.app1.apphome.ActivityHome;
 import un.app1.apphome.adapter.ProductAdapter;
 import un.app1.network.internet.ConnectivityReceiver;

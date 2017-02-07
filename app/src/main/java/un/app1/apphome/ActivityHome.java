@@ -6,14 +6,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
+import ss.com.bannerslider.banners.RemoteBanner;
+import ss.com.bannerslider.events.OnBannerClickListener;
 import un.app1.MainApp;
 import un.app1.R;
 import un.app1.apphome.adapter.ProductAdapter;
+import un.app1.apphome.model.ArrayBanner;
+import un.app1.apphome.model.Banner;
 import un.app1.apphome.model.SubmitBanner;
 import un.app1.apphome.model.SubmitQuickPreview;
 import un.app1.databinding.ActivityHomeBinding;
@@ -50,11 +57,31 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         binding.setPresenter(homePresenter);
 
         setAdapter();
+        onClickBanner();
 
         homePresenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
-
         homePresenter.getQuickPreview(new SubmitQuickPreview("deviceId", "token"));
 
+    }
+
+    private void onClickRetry(){
+        binding.textRetry.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                homePresenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
+            }
+        });
+    }
+
+    private void onClickBanner(){
+        binding.bannerSlider1.setOnBannerClickListener(new OnBannerClickListener() {
+
+            @Override
+            public void onClick(int position) {
+                Toast.makeText(ActivityHome.this, "Banner with position " + String.valueOf(position) + " clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setAdapter(){
@@ -116,6 +143,11 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     }
 
     @Override
+    public void bannserSize(List<ArrayBanner> arrayBanners) {
+        homePresenter.setBanner(binding.bannerSlider1, arrayBanners);
+    }
+
+    @Override
     public void setUserName(String username) {
         homeViewModel.setUserName(username);
     }
@@ -133,6 +165,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     @Override
     public void showClickRetry() {
         binding.textRetry.setVisibility(View.VISIBLE);
+        onClickRetry();
     }
 
     @Override

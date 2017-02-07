@@ -1,5 +1,11 @@
 package un.app1.apphome;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import un.app1.apphome.model.ArrayBanner;
+import un.app1.apphome.model.Banner;
+
 public interface HomeView {
 
     void setUserName(String username);
@@ -21,4 +27,6 @@ public interface HomeView {
     void setLayoutSignOut();
 
     void setLayoutSignIn();
+
+    void bannserSize(List<ArrayBanner> arrayBanners);
 }

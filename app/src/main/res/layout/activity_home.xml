@@ -54,12 +54,25 @@
             android:background="#FFFFFF">
 
             <RelativeLayout
-                android:id="@+id/layoutHomeDashboardSignin"
+                android:id="@+id/layoutHomeDashboardSignOut"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:background="#FFFFFF">
+                android:background="#FFFFFF"
+                android:visibility="gone">
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/layoutHomeDashboardSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="#FFFFFF"
+                android:visibility="visible">
 
                 <RelativeLayout
                     android:id="@+id/layoutContentDashboard"
@@ -134,7 +147,7 @@
                     android:textSize="13sp" />
 
             </RelativeLayout>
-            
+
         </RelativeLayout>
 
         <RelativeLayout

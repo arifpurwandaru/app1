@@ -44,7 +44,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
         setAdapter();
 
-        homePresenter.getHomeBanner(new SubmitBanner("nbn b","n ,n ,"));
+//        homePresenter.getHomeBanner(new SubmitBanner("nbn b","n ,n ,"));
 //        homePresenter.getPreviewUser();
 
     }

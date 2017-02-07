@@ -8,7 +8,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import un.app1.constants.ConsService;
 
-public class RetrofitBuilder {
+public class RetBuilder {
 
     public NetService service(){
         OkHttpClient okhttpBuilder = new OkHttpClient.Builder()

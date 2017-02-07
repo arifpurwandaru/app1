@@ -18,12 +18,12 @@ import un.app1.apphome.model.SubmitBanner;
 import un.app1.databinding.ActivityHomeBinding;
 import un.app1.network.internet.ConnectivityReceiver;
 import un.app1.network.service.MainService;
-import un.app1.network.service.RetrofitBuilder;
+import un.app1.network.service.RetBuilder;
 
 public class ActivityHome extends AppCompatActivity implements HomeView, ConnectivityReceiver.ConnectivityReceiverListener {
 
     @Inject
-    public RetrofitBuilder retrofitBuilder;
+    public RetBuilder retBuilder;
 
     @Inject
     public ProductAdapter productAdapter;
@@ -37,25 +37,22 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setBinding();
 
         ((MainApp) getApplication()).providesAppComponents().inject(ActivityHome.this);
         MainApp.getInstance().setConnectivityListener(ActivityHome.this);
+
+        binding = DataBindingUtil.setContentView(ActivityHome.this, R.layout.activity_home);
+        mainService = new MainService(retBuilder.service());
+        homeViewModel = new HomeViewModel(new HomeMainModel());
+        homePresenter = new HomePresenter(ActivityHome.this, mainService);
+        binding.setViewModel(homeViewModel);
+        binding.setPresenter(homePresenter);
 
         setAdapter();
 
 //        homePresenter.getHomeBanner(new SubmitBanner("nbn b","n ,n ,"));
 //        homePresenter.getPreviewUser();
 
-    }
-
-    private void setBinding() {
-        binding = DataBindingUtil.setContentView(ActivityHome.this, R.layout.activity_home);
-        mainService = new MainService(retrofitBuilder.service());
-        homeViewModel = new HomeViewModel(new HomeMainModel());
-        homePresenter = new HomePresenter(ActivityHome.this, mainService);
-        binding.setViewModel(homeViewModel);
-        binding.setPresenter(homePresenter);
     }
 
     private void setAdapter(){

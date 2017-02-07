@@ -7,7 +7,8 @@ import dagger.Provides;
 import un.app1.apphome.ActivityHome;
 import un.app1.apphome.adapter.ProductAdapter;
 import un.app1.network.internet.ConnectivityReceiver;
-import un.app1.network.service.RetrofitBuilder;
+import un.app1.network.service.RetBuilder;
+import un.app1.network.service.RetBuilder;
 
 @Module
 public class AppModule {
@@ -20,8 +21,8 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public RetrofitBuilder providesRetrofitBuilder() {
-        return new RetrofitBuilder();
+    public RetBuilder providesRetrofitBuilder() {
+        return new RetBuilder();
     }
 
     @Provides

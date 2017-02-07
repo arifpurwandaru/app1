@@ -110,7 +110,9 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
     @Override
     public void setLayoutSignIn() {
-
+        binding.layoutHomeDashboardChecking.setVisibility(View.GONE);
+        binding.layoutHomeDashboardSignIn.setVisibility(View.VISIBLE);
+        binding.layoutHomeDashboardSignOut.setVisibility(View.GONE);
     }
 
     @Override

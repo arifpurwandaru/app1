@@ -2,6 +2,7 @@ package un.app1.apphome.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Banner {
@@ -13,6 +14,6 @@ public class Banner {
     public String statusCode;
 
     @SerializedName("banner")
-    public List<Banner> banner = null;
+    public List<Banner> banner = new ArrayList<Banner>();
 
 }

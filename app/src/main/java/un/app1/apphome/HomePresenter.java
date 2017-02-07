@@ -3,6 +3,7 @@ package un.app1.apphome;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
@@ -70,7 +71,6 @@ public class HomePresenter {
 
         subscriptions.add(subscription);
     }
-
 
     void checkUserLogin(){
         homeView.setUserName("Login or Signup");

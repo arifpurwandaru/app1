@@ -1,11 +1,15 @@
 package un.app1.apphome;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -61,7 +65,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         homePresenter.getQuickPreview(new SubmitQuickPreview("deviceId", "token"));
 
     }
-
+    
     private void onClickRetry(){
         binding.textRetry.setOnClickListener(new View.OnClickListener() {
 

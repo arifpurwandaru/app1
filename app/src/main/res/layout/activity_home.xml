@@ -25,7 +25,7 @@
         <RelativeLayout
             android:id="@+id/layoutBanner"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="180dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
@@ -39,7 +39,7 @@
                 app:defaultIndicators="dash"
                 app:hideIndicators="false"
                 app:indicatorSize="10dp"
-                app:interval="5500"
+                app:interval="7000"
                 app:loopSlides="true" />
 
             <TextView

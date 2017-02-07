@@ -16,4 +16,9 @@ public interface HomeView {
 
     void goToActivity();
 
+    void setLayoutChecking();
+
+    void setLayoutSignOut();
+
+    void setLayoutSignIn();
 }

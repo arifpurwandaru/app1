@@ -95,6 +95,25 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     }
 
     @Override
+    public void setLayoutChecking() {
+        binding.layoutHomeDashboardChecking.setVisibility(View.VISIBLE);
+        binding.layoutHomeDashboardSignIn.setVisibility(View.GONE);
+        binding.layoutHomeDashboardSignOut.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setLayoutSignOut() {
+        binding.layoutHomeDashboardChecking.setVisibility(View.GONE);
+        binding.layoutHomeDashboardSignIn.setVisibility(View.GONE);
+        binding.layoutHomeDashboardSignOut.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void setLayoutSignIn() {
+
+    }
+
+    @Override
     public void setUserName(String username) {
         homeViewModel.setUserName(username);
     }

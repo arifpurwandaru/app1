@@ -15,6 +15,7 @@ import un.app1.MainApp;
 import un.app1.R;
 import un.app1.apphome.adapter.ProductAdapter;
 import un.app1.apphome.model.SubmitBanner;
+import un.app1.apphome.model.SubmitQuickPreview;
 import un.app1.databinding.ActivityHomeBinding;
 import un.app1.network.internet.ConnectivityReceiver;
 import un.app1.network.service.MainService;
@@ -52,7 +53,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
         homePresenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
 
-        homePresenter.getPreviewUser();
+        homePresenter.getQuickPreview(new SubmitQuickPreview("deviceId", "token"));
 
     }
 

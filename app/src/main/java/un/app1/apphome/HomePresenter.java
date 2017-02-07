@@ -9,7 +9,9 @@ import rx.subscriptions.CompositeSubscription;
 import un.app1.R;
 import un.app1.apphome.adapter.ProductModel;
 import un.app1.apphome.model.Banner;
+import un.app1.apphome.model.QuickPreview;
 import un.app1.apphome.model.SubmitBanner;
+import un.app1.apphome.model.SubmitQuickPreview;
 import un.app1.network.service.MainService;
 import un.app1.network.service.MyCallBack;
 
@@ -49,11 +51,26 @@ public class HomePresenter {
         subscriptions.add(subscription);
     }
 
-    void getPreviewUser(){
-        homeView.setUserName("User name");
-        homeView.setUserImage("http://tango.image-static.hipwee.com/wp-content/uploads/2014/05/20130801044011344-800x501.jpg");
-        homeView.setShowUserImage();
+    void getQuickPreview(SubmitQuickPreview submitQuickPreview){
+        Subscription subscription = service.requestQuickPreview(submitQuickPreview, new MyCallBack.CallQuickPreview() {
+
+            @Override
+            public void onError(String error) {
+
+            }
+
+            @Override
+            public void onSuccess(QuickPreview quickPreview) {
+                Log.e("x",">> " + quickPreview.imageUrl);
+                homeView.setUserName(quickPreview.user);
+                homeView.setUserImage(quickPreview.imageUrl);
+                homeView.setShowUserImage();
+            }
+        });
+
+        subscriptions.add(subscription);
     }
+
 
     void checkUserLogin(){
         homeView.setUserName("Login or Signup");

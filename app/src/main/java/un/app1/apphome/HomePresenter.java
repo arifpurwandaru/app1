@@ -44,7 +44,7 @@ public class HomePresenter {
 
             @Override
             public void onSuccess(Banner banner) {
-                Log.e("x",">> " + banner.banner.get(0).banner);
+                Log.e("x",">> " + banner.banner);
             }
         });
 

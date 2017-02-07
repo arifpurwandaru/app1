@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="un.app1.apphome.HomeViewModel" />
+
+        <variable
+            name="presenter"
+            type="un.app1.apphome.HomePresenter" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="un.app1.apphome.ActivityHome">
+
+        <RelativeLayout
+            android:id="@+id/layoutBanner"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/colorDarkWhite">
+
+            <TextView
+                android:text="@{viewModel.clickRetry}"
+                android:hint="Retry.."
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textRetry"
+                android:textColor="@color/colorLightkWhite"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:text="@{viewModel.userName}"
+                android:hint="UserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textUserName"
+                android:textSize="13sp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="29dp"
+                android:layout_marginEnd="29dp"
+                android:layout_marginBottom="39dp" />
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/image_user"
+                android:layout_width="50dp"
+                android:scaleType="centerCrop"
+                android:layout_height="50dp"
+                app:civ_border_color="#CADDDDDD"
+                app:civ_border_width="0dp"
+                app:civ_shadow="true"
+                app:civ_shadow_color="#CADDDDDD"
+                app:civ_shadow_radius="0"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="27dp" />
+
+            <RelativeLayout
+                android:id="@+id/layoutUserOrLogo"
+                android:layout_width="75dp"
+                android:layout_height="match_parent"
+                android:background="#999999"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutHomeDashboard"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_below="@+id/layoutBanner"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#FFFFFF">
+
+            <RelativeLayout
+                android:id="@+id/layoutContentDashboard"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+                <RelativeLayout
+                    android:id="@+id/layoutMenu"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true">
+
+                    <ImageView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        fab:srcCompat="@drawable/ic_menu_1"
+                        android:id="@+id/imageView"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@+id/layoutMenu"
+                    android:layout_toStartOf="@+id/layoutMenu">
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutMainContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="2dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:background="#eeeeee"
+            android:layout_below="@+id/layoutHomeDashboard"
+            android:layout_centerHorizontal="true">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                android:scrollbars="vertical"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

@@ -61,7 +61,6 @@ public class HomePresenter {
 
             @Override
             public void onSuccess(QuickPreview quickPreview) {
-                Log.e("x",">> " + quickPreview.imageUrl);
                 homeView.setUserName(quickPreview.user);
                 homeView.setUserImage(quickPreview.imageUrl);
                 homeView.setShowUserImage();

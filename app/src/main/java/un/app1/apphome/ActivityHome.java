@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Toast;
@@ -64,6 +62,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         homePresenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
         homePresenter.getQuickPreview(new SubmitQuickPreview("deviceId", "token"));
         binding.bannerSlider.setVisibility(View.GONE);
+
     }
     
     private void onClickRetry(){
@@ -83,7 +82,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
             @Override
             public void onClick(int position) {
-//                Toast.makeText(ActivityHome.this, "Banner with position " + String.valueOf(position) + " clicked!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityHome.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
             }
         });
     }

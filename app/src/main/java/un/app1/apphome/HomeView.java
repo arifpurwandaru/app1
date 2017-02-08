@@ -29,4 +29,6 @@ public interface HomeView {
     void setLayoutSignIn();
 
     void bannserSize(List<ArrayBanner> arrayBanners);
+
+    void animFadeInSignIn();
 }

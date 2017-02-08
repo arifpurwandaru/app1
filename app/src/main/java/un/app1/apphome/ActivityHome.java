@@ -1,5 +1,9 @@
 package un.app1.apphome;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.PixelFormat;
@@ -91,6 +95,27 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         productAdapter.setProduct(homePresenter.getProduct());
         binding.recyclerProduct.setLayoutManager(new GridLayoutManager(ActivityHome.this, 2));
         binding.recyclerProduct.setAdapter(productAdapter);
+    }
+
+    @Override
+    public void animFadeInSignIn(){
+        ObjectAnimator fadeOut = ObjectAnimator.ofFloat(binding.layoutHomeDashboardChecking, "alpha",  1f, .3f);
+        fadeOut.setDuration(2000);
+        ObjectAnimator fadeIn = ObjectAnimator.ofFloat(binding.layoutHomeDashboardSignIn, "alpha", .3f, 1f);
+        fadeIn.setDuration(2000);
+
+        final AnimatorSet mAnimationSet = new AnimatorSet();
+
+        mAnimationSet.play(fadeIn).after(fadeOut);
+
+        mAnimationSet.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                mAnimationSet.start();
+            }
+        });
+        mAnimationSet.start();
     }
 
     @Override

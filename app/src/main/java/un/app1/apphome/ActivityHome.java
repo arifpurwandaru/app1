@@ -81,7 +81,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
             @Override
             public void onClick(int position) {
-                Toast.makeText(ActivityHome.this, "Banner with position " + String.valueOf(position) + " clicked!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ActivityHome.this, "Banner with position " + String.valueOf(position) + " clicked!", Toast.LENGTH_SHORT).show();
             }
         });
     }

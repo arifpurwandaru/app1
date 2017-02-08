@@ -1,9 +1,11 @@
 package un.app1.apphome;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
@@ -12,10 +14,15 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import rebus.permissionutils.AskAgainCallback;
+import rebus.permissionutils.FullCallback;
+import rebus.permissionutils.PermissionEnum;
+import rebus.permissionutils.PermissionManager;
 import ss.com.bannerslider.events.OnBannerClickListener;
 import un.app1.MainApp;
 import un.app1.R;
@@ -27,6 +34,7 @@ import un.app1.databinding.ActivityHomeBinding;
 import un.app1.network.internet.ConnectivityReceiver;
 import un.app1.network.service.MainService;
 import un.app1.network.service.RetBuilder;
+import un.app1.pagelogin.ActivityLogin;
 
 public class ActivityHome extends AppCompatActivity implements HomeView, ConnectivityReceiver.ConnectivityReceiverListener {
 
@@ -68,7 +76,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
     private void onClickLogin(){
         binding.textLogin.setOnClickListener((View v) -> {
-            
+            startActivityForResult(new Intent(ActivityHome.this, ActivityLogin.class), 1);
         });
     }
 

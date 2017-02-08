@@ -1,5 +1,6 @@
 package un.app1.pagelogin;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import rx.Subscription;
@@ -21,6 +22,35 @@ public class LoginPresenter {
         this.loginView = loginView;
         this.service = service;
         subscriptions = new CompositeSubscription();
+    }
+
+    public void onLoginClick() {
+        loginView.onLoginClick();
+    }
+
+    public void onCloseActivity() {
+        loginView.onCloseActivity();
+    }
+
+    void checkFirst(String deviceid, String userName, String password){
+        if(userName.isEmpty() && password.isEmpty()){
+            loginView.setError("Email or Password is Empty");
+        } else if(userName.isEmpty()){
+            loginView.setError("Email Cannot be Empty");
+        } else if(password.isEmpty()){
+            loginView.setError("Password Cannot be Empty");
+        } else {
+            if(isValidEmail(userName)){
+                getLogin(new SubmitLogin(deviceid, userName, password));
+            } else {
+                loginView.setError("Ooops! Your email is invalid");
+            }
+        }
+    }
+
+
+    public final boolean isValidEmail(CharSequence target) {
+        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 
     void getLogin(SubmitLogin submitLogin) {

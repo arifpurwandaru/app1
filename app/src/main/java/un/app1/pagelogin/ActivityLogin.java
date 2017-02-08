@@ -1,8 +1,11 @@
 package un.app1.pagelogin;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
+import android.view.MenuItem;
 import android.view.View;
 
 import javax.inject.Inject;
@@ -36,15 +39,33 @@ public class ActivityLogin extends AppCompatActivity implements LoginView, Conne
         presenter = new LoginPresenter(ActivityLogin.this, mainService);
         binding.setPresenter(presenter);
 
-        binding.textView2.setOnClickListener((View v) -> {
-            presenter.getLogin(new SubmitLogin("devideid", "username", "password"));
-        });
+    }
 
-
+    private String deviceId(){
+        TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        return telephonyManager.getDeviceId();
     }
 
     @Override
     public void onNetworkConnectionChanged(boolean isConnected) {
 
     }
+
+    @Override
+    public void setError(String message) {
+
+    }
+
+    @Override
+    public void onLoginClick() {
+        presenter.checkFirst(deviceId(),
+                binding.inputEmail.getText().toString(),
+                binding.inputPassword.getText().toString());
+    }
+
+    @Override
+    public void onCloseActivity() {
+        this.finish();
+    }
+
 }

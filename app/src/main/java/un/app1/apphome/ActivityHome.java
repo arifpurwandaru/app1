@@ -77,6 +77,8 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     }
 
     private void onClickBanner(){
+        binding.bannerSlider.setHideIndicators(false);
+        binding.bannerSlider.setHideIndicators(true);
         binding.bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
 
             @Override

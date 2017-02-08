@@ -2,6 +2,7 @@ package un.app1.network.service;
 
 import un.app1.apphome.model.Banner;
 import un.app1.apphome.model.QuickPreview;
+import un.app1.pagelogin.model.DataLogin;
 
 public class MyCallBack {
 
@@ -17,6 +18,13 @@ public class MyCallBack {
         void onError(String error);
 
         void onSuccess(QuickPreview quickPreview);
+    }
+
+    public interface CallLogin {
+
+        void onError(String error);
+
+        void onSuccess(DataLogin dataLogin);
     }
 
 }

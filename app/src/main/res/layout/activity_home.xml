@@ -17,7 +17,6 @@
 
     </data>
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -79,7 +78,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:background="@color/colorLightkWhite"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/textView"
@@ -97,9 +96,17 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                android:padding="5dp"
                 android:background="@color/colorLightkWhite"
-                android:visibility="gone">
+                android:visibility="visible">
 
+                <TextView
+                    android:text="Login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    android:id="@+id/textLogin" />
             </RelativeLayout>
 
             <RelativeLayout

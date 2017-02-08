@@ -10,6 +10,8 @@ import un.app1.apphome.model.Banner;
 import un.app1.apphome.model.QuickPreview;
 import un.app1.apphome.model.SubmitBanner;
 import un.app1.apphome.model.SubmitQuickPreview;
+import un.app1.pagelogin.model.DataLogin;
+import un.app1.pagelogin.model.SubmitLogin;
 
 public class MainService {
 
@@ -73,6 +75,35 @@ public class MainService {
                     @Override
                     public void onNext(QuickPreview quickPreview) {
                         callback.onSuccess(quickPreview);
+                    }
+                });
+    }
+
+    public Subscription requestLogin(SubmitLogin submitLogin, final MyCallBack.CallLogin callback) {
+
+        return service.reqLogin(submitLogin)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .onErrorResumeNext(new Func1<Throwable, Observable<? extends DataLogin>>() {
+                    @Override
+                    public Observable<? extends DataLogin> call(Throwable throwable) {
+                        return Observable.error(throwable);
+                    }
+                })
+                .subscribe(new Subscriber<DataLogin>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onError("Something went wrong..");
+                    }
+
+                    @Override
+                    public void onNext(DataLogin dataLogin) {
+                        callback.onSuccess(dataLogin);
                     }
                 });
     }

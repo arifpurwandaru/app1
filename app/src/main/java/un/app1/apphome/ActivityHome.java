@@ -37,8 +37,8 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     public ProductAdapter productAdapter;
 
     ActivityHomeBinding binding;
-    HomePresenter homePresenter;
-    HomeViewModel homeViewModel;
+    HomePresenter presenter;
+    HomeViewModel viewModel;
     MainService mainService;
 
     @Override
@@ -51,17 +51,25 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
         binding = DataBindingUtil.setContentView(ActivityHome.this, R.layout.activity_home);
         mainService = new MainService(retBuilder.service());
-        homeViewModel = new HomeViewModel(new HomeMainModel());
-        homePresenter = new HomePresenter(ActivityHome.this, mainService);
-        binding.setViewModel(homeViewModel);
-        binding.setPresenter(homePresenter);
+        viewModel = new HomeViewModel(new HomeMainModel());
+        presenter = new HomePresenter(ActivityHome.this, mainService);
+        binding.setViewModel(viewModel);
+        binding.setPresenter(presenter);
+
+        presenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
+        presenter.getQuickPreview(new SubmitQuickPreview("deviceId", "token"));
+        binding.bannerSlider.setVisibility(View.GONE);
 
         setAdapter();
         onClickBanner();
+        onClickLogin();
 
-        homePresenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
-        homePresenter.getQuickPreview(new SubmitQuickPreview("deviceId", "token"));
-        binding.bannerSlider.setVisibility(View.GONE);
+    }
+
+    private void onClickLogin(){
+        binding.textLogin.setOnClickListener((View v) -> {
+            
+        });
     }
 
     private void onClickRetry(){
@@ -69,7 +77,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
             @Override
             public void onClick(View arg0) {
-                homePresenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
+                presenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
             }
         });
     }
@@ -88,7 +96,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
     private void setAdapter(){
         productAdapter.setViewData(ActivityHome.this);
-        productAdapter.setProduct(homePresenter.getProduct());
+        productAdapter.setProduct(presenter.getProduct());
         binding.recyclerProduct.setLayoutManager(new GridLayoutManager(ActivityHome.this, 3));
         binding.recyclerProduct.setAdapter(productAdapter);
     }
@@ -119,14 +127,14 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
     @Override
     public void onDestroy(){
-        homePresenter.unSubscribe();
+        presenter.unSubscribe();
         super.onDestroy();
     }
 
     @Override
     public void setShowUserImage(){
         Picasso.with(ActivityHome.this)
-                .load(homeViewModel.getUserImage())
+                .load(viewModel.getUserImage())
                 .placeholder(R.drawable.ic_user)
                 .resize(300, 300)
                 .into(binding.imageUser);
@@ -134,7 +142,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
     @Override
     public void setUserImage(String imageUrl) {
-        homeViewModel.setUserImage(imageUrl);
+        viewModel.setUserImage(imageUrl);
     }
 
     @Override
@@ -165,17 +173,17 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
     @Override
     public void bannserSize(List<ArrayBanner> arrayBanners) {
-        homePresenter.setBanner(binding.bannerSlider, arrayBanners);
+        presenter.setBanner(binding.bannerSlider, arrayBanners);
     }
 
     @Override
     public void setUserName(String username) {
-        homeViewModel.setUserName(username);
+        viewModel.setUserName(username);
     }
 
     @Override
     public void setLogin(String login) {
-        homeViewModel.setUserName(login);
+        viewModel.setUserName(login);
     }
 
     @Override

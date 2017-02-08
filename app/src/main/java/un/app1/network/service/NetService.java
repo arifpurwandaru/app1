@@ -7,6 +7,8 @@ import un.app1.apphome.model.Banner;
 import un.app1.apphome.model.QuickPreview;
 import un.app1.apphome.model.SubmitBanner;
 import un.app1.apphome.model.SubmitQuickPreview;
+import un.app1.pagelogin.model.DataLogin;
+import un.app1.pagelogin.model.SubmitLogin;
 
 interface NetService {
 
@@ -15,5 +17,8 @@ interface NetService {
 
     @POST("usrpreview")
     Observable<QuickPreview> reqBanner(@Body SubmitQuickPreview submitQuickPreview);
+
+    @POST("userlogin")
+    Observable<DataLogin> reqLogin(@Body SubmitLogin submitLogin);
 
 }

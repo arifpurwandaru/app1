@@ -34,9 +34,9 @@
             </intent-filter>
         </receiver>
 
-        <!--<activity-->
-            <!--android:name=".pages.home.HomeActivity"-->
-            <!--android:theme="@style/AppFullScreenTheme" />-->
+        <activity
+            android:name=".pagelogin.ActivityLogin"
+            android:theme="@style/AppTheme" />
 
     </application>
 

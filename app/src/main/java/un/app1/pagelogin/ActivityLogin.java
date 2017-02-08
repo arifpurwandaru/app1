@@ -3,6 +3,7 @@ package un.app1.pagelogin;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import javax.inject.Inject;
 
@@ -12,6 +13,7 @@ import un.app1.databinding.ActivityLoginBinding;
 import un.app1.network.internet.ConnectivityReceiver;
 import un.app1.network.service.MainService;
 import un.app1.network.service.RetBuilder;
+import un.app1.pagelogin.model.SubmitLogin;
 
 public class ActivityLogin extends AppCompatActivity implements LoginView, ConnectivityReceiver.ConnectivityReceiverListener {
 
@@ -33,6 +35,11 @@ public class ActivityLogin extends AppCompatActivity implements LoginView, Conne
         mainService = new MainService(retBuilder.service());
         presenter = new LoginPresenter(ActivityLogin.this, mainService);
         binding.setPresenter(presenter);
+
+        binding.textView2.setOnClickListener((View v) -> {
+            presenter.getLogin(new SubmitLogin("devideid", "username", "password"));
+        });
+
 
     }
 

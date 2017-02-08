@@ -33,6 +33,8 @@ public class HomePresenter {
         ArrayList<ProductModel> productModels = new ArrayList<>();
         productModels.add(new ProductModel(R.drawable.ic_menu_1, "xxxxxx"));
         productModels.add(new ProductModel(R.drawable.ic_menu_2, "xxxxxx"));
+        productModels.add(new ProductModel(R.drawable.ic_menu_2, "xxxxxx"));
+
         return productModels;
     }
 

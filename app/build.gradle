@@ -41,6 +41,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     apt 'com.google.dagger:dagger-compiler:2.5'
     provided 'javax.annotation:jsr250-api:1.0'
+    compile 'com.google.android.gms:play-services-analytics:10.0.1'
+    compile 'com.google.android.gms:play-services-maps:10.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.0.0-RC1'
@@ -56,12 +58,14 @@ dependencies {
     compile 'com.mikhaellopez:circularimageview:3.0.2'
     compile 'com.android.support:design:25.1.1'
     compile 'org.zakariya.flyoutmenus:flyoutmenu:0.5.3'
+    compile 'com.flipboard:bottomsheet-core:1.5.3'
+    
     compile project(':bannerslider')
+
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    compile 'com.google.android.gms:play-services-analytics:10.0.1'
-    compile 'com.google.android.gms:play-services-maps:10.0.1'
 
-    compile 'com.github.goka.blurredgridmenu:blurredgridmenu:1.0.2'
+
+
 }

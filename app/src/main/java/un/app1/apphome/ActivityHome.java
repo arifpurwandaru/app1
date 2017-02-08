@@ -1,9 +1,7 @@
 package un.app1.apphome;
 
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
@@ -12,12 +10,8 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Toast;
 
-import com.goka.blurredgridmenu.BlurredGridMenuConfig;
-import com.goka.blurredgridmenu.GridMenu;
-import com.goka.blurredgridmenu.GridMenuFragment;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -47,8 +41,6 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     HomeViewModel homeViewModel;
     MainService mainService;
 
-    private GridMenuFragment mGridMenuFragment;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,46 +62,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         homePresenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
         homePresenter.getQuickPreview(new SubmitQuickPreview("deviceId", "token"));
         binding.bannerSlider.setVisibility(View.GONE);
-
-        makeBlurConfig();
-        makeGridMenuFragment();
-
     }
-
-    private void makeBlurConfig() {
-        BlurredGridMenuConfig
-                .build(new BlurredGridMenuConfig.Builder()
-                        .radius(1)
-                        .downsample(1)
-                        .overlayColor(Color.parseColor("#AA000000")));
-    }
-
-    private void makeGridMenuFragment() {
-
-        mGridMenuFragment = GridMenuFragment.newInstance(R.drawable.ic_menu_2);
-
-        List<GridMenu> menus = new ArrayList<>();
-        menus.add(new GridMenu("Home", R.drawable.ic_menu_2));
-        menus.add(new GridMenu("Calendar", R.drawable.ic_menu_2));
-        menus.add(new GridMenu("Overview", R.drawable.ic_menu_2));
-        menus.add(new GridMenu("Groups", R.drawable.ic_menu_2));
-        menus.add(new GridMenu("Lists", R.drawable.ic_menu_2));
-        menus.add(new GridMenu("Profile", R.drawable.ic_menu_2));
-        menus.add(new GridMenu("Timeline", R.drawable.ic_menu_2));
-        menus.add(new GridMenu("Setting", R.drawable.ic_menu_2));
-        menus.add(new GridMenu("Setting", R.drawable.ic_menu_2));
-
-        mGridMenuFragment.setupMenu(menus);
-
-        mGridMenuFragment.setOnClickMenuListener(new GridMenuFragment.OnClickMenuListener() {
-            @Override
-            public void onClickMenu(GridMenu gridMenu, int position) {
-                Toast.makeText(ActivityHome.this, "Title:" + gridMenu.getTitle() + ", Position:" + position,
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
 
     private void onClickRetry(){
         binding.textRetry.setOnClickListener(new View.OnClickListener() {
@@ -129,11 +82,6 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
             @Override
             public void onClick(int position) {
                 Toast.makeText(ActivityHome.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
-                FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-                tx.replace(R.id.main_frame, mGridMenuFragment);
-                tx.addToBackStack(null);
-                tx.commit();
-                Toast.makeText(ActivityHome.this, "" + String.valueOf(position) + "", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -141,7 +89,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     private void setAdapter(){
         productAdapter.setViewData(ActivityHome.this);
         productAdapter.setProduct(homePresenter.getProduct());
-        binding.recyclerProduct.setLayoutManager(new GridLayoutManager(ActivityHome.this, 2));
+        binding.recyclerProduct.setLayoutManager(new GridLayoutManager(ActivityHome.this, 3));
         binding.recyclerProduct.setAdapter(productAdapter);
     }
 

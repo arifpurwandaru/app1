@@ -1,12 +1,6 @@
 package un.app1.apphome;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -69,7 +63,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
         homePresenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
         homePresenter.getQuickPreview(new SubmitQuickPreview("deviceId", "token"));
-
+        binding.bannerSlider.setVisibility(View.GONE);
     }
     
     private void onClickRetry(){
@@ -106,6 +100,16 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         alphaAnimation.setRepeatCount(0);
         alphaAnimation.setRepeatMode(Animation.REVERSE);
         binding.layoutHomeDashboardSignIn.startAnimation(alphaAnimation);
+    }
+
+    @Override
+    public void animFadeInBanner(){
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
+        alphaAnimation.setDuration(700);
+        alphaAnimation.setRepeatCount(0);
+        alphaAnimation.setRepeatMode(Animation.REVERSE);
+        binding.bannerSlider.setVisibility(View.VISIBLE);
+        binding.bannerSlider.startAnimation(alphaAnimation);
     }
 
     @Override

@@ -80,6 +80,7 @@ public class HomePresenter {
     }
 
     void setBanner(BannerSlider bannerSlider, List<ArrayBanner> arrayBanners) {
+        homeView.animFadeInBanner();
         for (int i = 0; i < arrayBanners.size(); i++) {
             bannerSlider.addBanner(new RemoteBanner(arrayBanners.get(i).url));
         }

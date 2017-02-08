@@ -31,4 +31,6 @@ public interface HomeView {
     void bannserSize(List<ArrayBanner> arrayBanners);
 
     void animFadeInSignIn();
+
+    void animFadeInBanner();
 }

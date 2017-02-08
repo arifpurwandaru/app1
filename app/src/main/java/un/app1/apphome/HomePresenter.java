@@ -74,6 +74,7 @@ public class HomePresenter {
         subscriptions.add(subscription);
     }
 
+    @SuppressWarnings("unused")
     void checkUserLogin() {
         homeView.setUserName("Login or Signup");
     }

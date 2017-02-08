@@ -1,8 +1,5 @@
 package un.app1.apphome;
 
-import android.util.Log;
-import android.view.View;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,9 +63,8 @@ public class HomePresenter {
 
             @Override
             public void onSuccess(QuickPreview quickPreview) {
-
-                homeView.animFadeInSignIn();
                 homeView.setLayoutSignIn();
+                homeView.animFadeInSignIn();
                 homeView.setUserName(quickPreview.user);
                 homeView.setUserImage(quickPreview.imageUrl);
                 homeView.setShowUserImage();

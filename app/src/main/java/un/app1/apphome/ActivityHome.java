@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -99,23 +101,11 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
     @Override
     public void animFadeInSignIn(){
-        ObjectAnimator fadeOut = ObjectAnimator.ofFloat(binding.layoutHomeDashboardChecking, "alpha",  1f, .3f);
-        fadeOut.setDuration(2000);
-        ObjectAnimator fadeIn = ObjectAnimator.ofFloat(binding.layoutHomeDashboardSignIn, "alpha", .3f, 1f);
-        fadeIn.setDuration(2000);
-
-        final AnimatorSet mAnimationSet = new AnimatorSet();
-
-        mAnimationSet.play(fadeIn).after(fadeOut);
-
-        mAnimationSet.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                mAnimationSet.start();
-            }
-        });
-        mAnimationSet.start();
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
+        alphaAnimation.setDuration(700);
+        alphaAnimation.setRepeatCount(0);
+        alphaAnimation.setRepeatMode(Animation.REVERSE);
+        binding.layoutHomeDashboardSignIn.startAnimation(alphaAnimation);
     }
 
     @Override

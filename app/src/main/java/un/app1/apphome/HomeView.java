@@ -34,6 +34,8 @@ public interface HomeView {
 
     void animFadeInBanner();
 
+    void animFadeInBlank();
+
     void onClickRetry();
 
     void onClickLogin();
@@ -44,7 +46,19 @@ public interface HomeView {
 
     void ifBannerFailed();
 
-    void arcLoaderGone();
+    void ifUserPreviewFailed();
 
-    void arcLoaderVisible();
+    void animFadeOutArcLoader();
+
+    void animFadeOutChecking();
+
+    void setLayoutBlank();
+
+    void animFadeInChecking();
+
+    void animFadeInArcLoader();
+
+    void userPreview();
+
+    void goToMenuActivity(String menu);
 }

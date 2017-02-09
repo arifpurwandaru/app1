@@ -28,6 +28,8 @@ public class HomePresenter {
     private CompositeSubscription subscriptions;
     private Context context;
     private int banner = 0;
+    private int statusUserPreview = 0;
+    private boolean islogin = false;
 
     HomePresenter(Activity activity, HomeView homeView, MainService service) {
         this.homeView = homeView;
@@ -59,27 +61,48 @@ public class HomePresenter {
 
     void checkInternet(boolean status) {
         if (!status) {
-            homeView.arcLoaderGone();
+            homeView.animFadeOutArcLoader();
             homeView.snackBar();
         } else {
-            if (banner == 0) {
-                homeView.arcLoaderVisible();
-                homeView.ifBannerFailed();
+            if(islogin){
+                if (banner == 0) {
+                    homeView.animFadeInArcLoader();
+                    homeView.ifBannerFailed();
+                } if(statusUserPreview == 0){
+                    homeView.ifUserPreviewFailed();
+                }
+            } else {
+                if (banner == 0) {
+                    homeView.animFadeInArcLoader();
+                    homeView.ifBannerFailed();
+                }
             }
         }
     }
 
+    void isUserLogin(Activity activity){
+        if(islogin){
+            homeView.userPreview();
+        } else {
+            homeView.setLayoutSignOut();
+        }
+    }
+
     void getHomeBanner(SubmitBanner submitBanner) {
+        homeView.animFadeInArcLoader();
+
         Subscription subscription = service.requestBanner(submitBanner, new MyCallBack.CallBanner() {
 
             @Override
             public void onError(String error) {
-                homeView.hideClickRetry();
+                homeView.animFadeOutArcLoader();
             }
 
             @Override
             public void onSuccess(Banner banner) {
                 homeView.bannserSize(banner.arrayBanners);
+                homeView.animFadeOutArcLoader();
+                homeView.animFadeInBanner();
             }
         });
 
@@ -87,17 +110,22 @@ public class HomePresenter {
     }
 
     void getQuickPreview(SubmitQuickPreview submitQuickPreview) {
+        homeView.setLayoutChecking();
+        homeView.animFadeInChecking();
         Subscription subscription = service.requestQuickPreview(submitQuickPreview, new MyCallBack.CallQuickPreview() {
 
             @Override
             public void onError(String error) {
-
+                homeView.animFadeOutChecking();
+                homeView.animFadeInBlank();
+                homeView.setLayoutBlank();
             }
 
             @Override
             public void onSuccess(QuickPreview quickPreview) {
-//                homeView.setLayoutSignIn();
-//                homeView.animFadeInSignIn();
+                statusUserPreview = Integer.parseInt(quickPreview.statusCode);
+                homeView.setLayoutSignIn();
+                homeView.animFadeInSignIn();
                 homeView.setUserName(quickPreview.user);
                 homeView.setUserImage(quickPreview.imageUrl);
                 homeView.setShowUserImage();
@@ -114,8 +142,6 @@ public class HomePresenter {
 
     void setBanner(BannerSlider bannerSlider, List<ArrayBanner> arrayBanners) {
         banner = arrayBanners.size();
-        homeView.arcLoaderGone();
-        homeView.animFadeInBanner();
         for (int i = 0; i < arrayBanners.size(); i++) {
             bannerSlider.addBanner(new RemoteBanner(arrayBanners.get(i).url));
         }

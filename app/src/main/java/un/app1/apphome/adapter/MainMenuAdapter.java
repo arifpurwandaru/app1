@@ -1,5 +1,6 @@
 package un.app1.apphome.adapter;
 
+import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -35,9 +36,7 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.Bindin
         final MainMenuModel dataCity = mainMenuModels.get(holder.getAdapterPosition());
         holder.getBinding().setVariable(BR.mainMenuModel, dataCity);
         holder.getBinding().setMainMenuModel(dataCity);
-        holder.getBinding().setClickMenu(view -> {
-
-        });
+        holder.getBinding().setClickMenu(view -> homeView.goToMenuActivity(dataCity.titleMenu + " position = " + position));
     }
 
     public void setMainMenu(List<MainMenuModel> mainMenuModels) {
@@ -45,7 +44,7 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.Bindin
         notifyDataSetChanged();
     }
 
-    public void setViewData(HomeView homeView){
+    public void setViewData(HomeView homeView) {
         this.homeView = homeView;
     }
 

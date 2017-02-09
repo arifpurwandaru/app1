@@ -64,8 +64,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         binding.setPresenter(presenter);
 
         presenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
-        presenter.getQuickPreview(new SubmitQuickPreview("deviceId", "token"));
-        binding.bannerSlider.setVisibility(View.GONE);
+        presenter.isUserLogin(ActivityHome.this);
 
         setAdapter();
         onClickBanner();
@@ -86,11 +85,23 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     }
 
     @Override
+    public void userPreview(){
+        presenter.getQuickPreview(new SubmitQuickPreview("deviceId", "token"));
+    }
+
+    @Override
+    public void goToMenuActivity(String menu) {
+        Toast.makeText(ActivityHome.this, menu,
+                Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void animFadeInSignIn() {
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
         alphaAnimation.setDuration(700);
         alphaAnimation.setRepeatCount(0);
         alphaAnimation.setRepeatMode(Animation.REVERSE);
+        binding.layoutHomeDashboardSignIn.setVisibility(View.VISIBLE);
         binding.layoutHomeDashboardSignIn.startAnimation(alphaAnimation);
     }
 
@@ -102,6 +113,56 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         alphaAnimation.setRepeatMode(Animation.REVERSE);
         binding.bannerSlider.setVisibility(View.VISIBLE);
         binding.bannerSlider.startAnimation(alphaAnimation);
+    }
+
+    @Override
+    public void animFadeInBlank() {
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
+        alphaAnimation.setDuration(700);
+        alphaAnimation.setRepeatCount(0);
+        alphaAnimation.setRepeatMode(Animation.REVERSE);
+        binding.layoutHomeDashboardBlank.setVisibility(View.VISIBLE);
+        binding.layoutHomeDashboardBlank.startAnimation(alphaAnimation);
+    }
+
+    @Override
+    public void animFadeInChecking() {
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
+        alphaAnimation.setDuration(700);
+        alphaAnimation.setRepeatCount(0);
+        alphaAnimation.setRepeatMode(Animation.REVERSE);
+        binding.layoutHomeDashboardChecking.setVisibility(View.VISIBLE);
+        binding.layoutHomeDashboardChecking.startAnimation(alphaAnimation);
+    }
+
+    @Override
+    public void animFadeInArcLoader() {
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
+        alphaAnimation.setDuration(700);
+        alphaAnimation.setRepeatCount(0);
+        alphaAnimation.setRepeatMode(Animation.REVERSE);
+        binding.arcLoader.setVisibility(View.VISIBLE);
+        binding.arcLoader.startAnimation(alphaAnimation);
+    }
+
+    @Override
+    public void animFadeOutArcLoader() {
+        AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
+        alphaAnimation.setDuration(700);
+        alphaAnimation.setRepeatCount(0);
+        alphaAnimation.setRepeatMode(Animation.REVERSE);
+        binding.arcLoader.startAnimation(alphaAnimation);
+        binding.arcLoader.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void animFadeOutChecking() {
+        AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
+        alphaAnimation.setDuration(700);
+        alphaAnimation.setRepeatCount(0);
+        alphaAnimation.setRepeatMode(Animation.REVERSE);
+        binding.layoutHomeDashboardChecking.startAnimation(alphaAnimation);
+        binding.layoutHomeDashboardChecking.setVisibility(View.GONE);
     }
 
     @Override
@@ -156,23 +217,34 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     }
 
     @Override
+    public void setLayoutBlank(){
+        binding.layoutHomeDashboardBlank.setVisibility(View.VISIBLE);
+        binding.layoutHomeDashboardChecking.setVisibility(View.GONE);
+        binding.layoutHomeDashboardSignIn.setVisibility(View.GONE);
+        binding.layoutHomeDashboardSignOut.setVisibility(View.GONE);
+    }
+
+    @Override
     public void setLayoutChecking() {
         binding.layoutHomeDashboardChecking.setVisibility(View.VISIBLE);
+        binding.layoutHomeDashboardBlank.setVisibility(View.GONE);
         binding.layoutHomeDashboardSignIn.setVisibility(View.GONE);
         binding.layoutHomeDashboardSignOut.setVisibility(View.GONE);
     }
 
     @Override
     public void setLayoutSignOut() {
+        binding.layoutHomeDashboardSignOut.setVisibility(View.VISIBLE);
+        binding.layoutHomeDashboardBlank.setVisibility(View.GONE);
         binding.layoutHomeDashboardChecking.setVisibility(View.GONE);
         binding.layoutHomeDashboardSignIn.setVisibility(View.GONE);
-        binding.layoutHomeDashboardSignOut.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void setLayoutSignIn() {
-        binding.layoutHomeDashboardChecking.setVisibility(View.GONE);
         binding.layoutHomeDashboardSignIn.setVisibility(View.VISIBLE);
+        binding.layoutHomeDashboardBlank.setVisibility(View.GONE);
+        binding.layoutHomeDashboardChecking.setVisibility(View.GONE);
         binding.layoutHomeDashboardSignOut.setVisibility(View.GONE);
     }
 
@@ -202,18 +274,13 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     }
 
     @Override
-    public void arcLoaderGone() {
-        binding.arcLoader.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void arcLoaderVisible() {
-        binding.arcLoader.setVisibility(View.VISIBLE);
-    }
-
-    @Override
     public void ifBannerFailed() {
         presenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
+    }
+
+    @Override
+    public void ifUserPreviewFailed() {
+        presenter.getQuickPreview(new SubmitQuickPreview("deviceId", "token"));
     }
 
     @Override

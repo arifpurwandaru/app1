@@ -11,7 +11,5 @@
     <string name="strTopUpSaldo">Top Up Saldo</string>
     <string name="strConnectionLost">Connection Lost..</string>
 
-    <array name="colorsArcLoader">
-        <item>@color/blue_grey</item>
-    </array>
+
 </resources>

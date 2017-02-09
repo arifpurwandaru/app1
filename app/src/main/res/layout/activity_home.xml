@@ -67,7 +67,8 @@
                     app:hideIndicators="true"
                     app:indicatorSize="10dp"
                     app:interval="6000"
-                    app:loopSlides="true" />
+                    app:loopSlides="true"
+                    android:visibility="gone"/>
 
                 <com.leo.simplearcloader.SimpleArcLoader
                     android:id="@+id/arcLoader"
@@ -92,6 +93,17 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/layoutBanner"
                 android:background="@drawable/layout_dashboard">
+
+                <RelativeLayout
+                    android:id="@+id/layoutHomeDashboardBlank"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/layout_dashboard"
+                    android:visibility="gone">
+
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/layoutHomeDashboardChecking"
@@ -121,7 +133,7 @@
                     android:background="@drawable/layout_dashboard"
                     android:gravity=""
                     android:padding="10dp"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/textLogin"
@@ -161,11 +173,11 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:background="@drawable/layout_dashboard"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <RelativeLayout
                         android:id="@+id/layoutContentDashboard"
-                        android:layout_width="100dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
@@ -181,22 +193,12 @@
                             android:layout_alignParentRight="true">
 
                             <ImageView
-                                android:id="@+id/imageView"
-                                android:layout_width="38dp"
-                                android:layout_height="38dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
+                                android:id="@+id/imagePreference"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerHorizontal="true"
                                 android:layout_centerVertical="true"
                                 fab:srcCompat="@drawable/ic_menu_1" />
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="40dp"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentTop="true"
-                            android:layout_toLeftOf="@+id/layoutMenu"
-                            android:layout_toStartOf="@+id/layoutMenu">
 
                         </RelativeLayout>
 

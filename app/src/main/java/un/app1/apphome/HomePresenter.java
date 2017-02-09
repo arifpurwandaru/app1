@@ -66,7 +66,7 @@ public class HomePresenter {
             @Override
             public void onSuccess(QuickPreview quickPreview) {
 //                homeView.setLayoutSignIn();
-                homeView.animFadeInSignIn();
+//                homeView.animFadeInSignIn();
                 homeView.setUserName(quickPreview.user);
                 homeView.setUserImage(quickPreview.imageUrl);
                 homeView.setShowUserImage();

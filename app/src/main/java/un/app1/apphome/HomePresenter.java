@@ -1,5 +1,8 @@
 package un.app1.apphome;
 
+import android.app.Activity;
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +14,7 @@ import un.app1.R;
 import un.app1.apphome.adapter.ProductModel;
 import un.app1.apphome.model.ArrayBanner;
 import un.app1.apphome.model.Banner;
+import un.app1.apphome.model.MainMenuModel;
 import un.app1.apphome.model.QuickPreview;
 import un.app1.apphome.model.SubmitBanner;
 import un.app1.apphome.model.SubmitQuickPreview;
@@ -22,10 +26,12 @@ public class HomePresenter {
     private HomeView homeView;
     private MainService service;
     private CompositeSubscription subscriptions;
+    Context context;
 
-    HomePresenter(HomeView homeView, MainService service) {
+    HomePresenter(Activity activity, HomeView homeView, MainService service) {
         this.homeView = homeView;
         this.service = service;
+        this.context = activity;
         subscriptions = new CompositeSubscription();
     }
 
@@ -34,9 +40,22 @@ public class HomePresenter {
         productModels.add(new ProductModel(R.drawable.ic_menu_1, "xxxxxx"));
         productModels.add(new ProductModel(R.drawable.ic_menu_2, "xxxxxx"));
         productModels.add(new ProductModel(R.drawable.ic_menu_2, "xxxxxx"));
-
         return productModels;
     }
+
+    ArrayList<MainMenuModel> getMainMenu() {
+        ArrayList<MainMenuModel> mainMenuModel = new ArrayList<>();
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strTokenListrik)));
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strPulsa)));
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strVoucherGame)));
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strTiketKereta)));
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strHotel)));
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strTiketPesawat)));
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strBPJS)));
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strTopUpSaldo)));
+        return mainMenuModel;
+    }
+
 
     void getHomeBanner(SubmitBanner submitBanner) {
         Subscription subscription = service.requestBanner(submitBanner, new MyCallBack.CallBanner() {

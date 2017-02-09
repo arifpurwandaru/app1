@@ -17,7 +17,7 @@ public class MainApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //LeakCanary.install(MainApp.this);
+        LeakCanary.install(MainApp.this);
         mainApp = MainApp.this;
         appComponents = DaggerAppComponents.builder().appModule(new AppModule()).build();
     }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="un.app1.apphome.model.MainMenuModel" />
+
+        <variable
+            name="mainMenuModel"
+            type="MainMenuModel" />
+
+        <variable
+            name="clickMenu"
+            type="un.app1.apphome.adapter.MenuClickHandler" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp">
+
+        <RelativeLayout
+            android:id="@+id/card_order"
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/layout_main_menu"
+            android:onClick="@{clickMenu.onClick}"
+            android:padding="5dp"
+            android:gravity="center">
+
+            <TextView
+                android:hint="menu"
+                android:text="@{mainMenuModel.titleMenu}"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textMenu"
+                android:textColor="@color/colorLightkWhite"
+                android:textStyle="bold"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>
+
+

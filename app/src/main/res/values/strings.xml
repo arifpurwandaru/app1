@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">app1</string>
 
+    <string name="strPulsa">Pulsa</string>
+    <string name="strTokenListrik">Token Listrik</string>
+    <string name="strVoucherGame">Voucher Game</string>
+    <string name="strTiketKereta">Tiket Kereta</string>
+    <string name="strHotel">Hotel</string>
+    <string name="strTiketPesawat">Tiket Pesawat</string>
+    <string name="strBPJS">BPJS</string>
+    <string name="strTopUpSaldo">Top Up Salde</string>
+
     <array name="colorsArcLoader">
         <item>@color/blue_grey</item>
     </array>

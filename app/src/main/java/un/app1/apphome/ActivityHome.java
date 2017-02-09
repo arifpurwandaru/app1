@@ -3,8 +3,10 @@ package un.app1.apphome;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
@@ -19,6 +21,7 @@ import javax.inject.Inject;
 
 import un.app1.MainApp;
 import un.app1.R;
+import un.app1.apphome.adapter.MainMenuAdapter;
 import un.app1.apphome.adapter.ProductAdapter;
 import un.app1.apphome.model.ArrayBanner;
 import un.app1.apphome.model.SubmitBanner;
@@ -37,6 +40,9 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     @Inject
     public ProductAdapter productAdapter;
 
+    @Inject
+    public MainMenuAdapter menuAdapter;
+
     ActivityHomeBinding binding;
     HomePresenter presenter;
     HomeViewModel viewModel;
@@ -53,7 +59,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         binding = DataBindingUtil.setContentView(ActivityHome.this, R.layout.activity_home);
         mainService = new MainService(retBuilder.service());
         viewModel = new HomeViewModel(new HomeMainModel());
-        presenter = new HomePresenter(ActivityHome.this, mainService);
+        presenter = new HomePresenter(ActivityHome.this, ActivityHome.this, mainService);
         binding.setViewModel(viewModel);
         binding.setPresenter(presenter);
 
@@ -71,6 +77,12 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         productAdapter.setProduct(presenter.getProduct());
         binding.recyclerProduct.setLayoutManager(new GridLayoutManager(ActivityHome.this, 3));
         binding.recyclerProduct.setAdapter(productAdapter);
+
+        menuAdapter.setViewData(ActivityHome.this);
+        menuAdapter.setMainMenu(presenter.getMainMenu());
+        binding.recyclerMainMenu.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        binding.recyclerMainMenu.setAdapter(menuAdapter);
+
     }
 
     @Override
@@ -91,6 +103,8 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         binding.bannerSlider.setVisibility(View.VISIBLE);
         binding.bannerSlider.startAnimation(alphaAnimation);
         binding.arcLoader.setVisibility(View.GONE);
+
+
     }
 
     @Override
@@ -194,6 +208,12 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     @Override
     public void hideClickRetry() {
         binding.textRetry.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onBackPressed(){
+        presenter.unSubscribe();
+        super.onBackPressed();
     }
 
 }

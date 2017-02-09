@@ -8,6 +8,7 @@ import dagger.Module;
 import dagger.Provides;
 import ss.com.bannerslider.views.BannerSlider;
 import un.app1.apphome.ActivityHome;
+import un.app1.apphome.adapter.MainMenuAdapter;
 import un.app1.apphome.adapter.ProductAdapter;
 import un.app1.network.internet.ConnectivityReceiver;
 import un.app1.network.service.RetBuilder;
@@ -32,6 +33,12 @@ public class AppModule {
     @Singleton
     public ProductAdapter providesProductAdapter() {
         return new ProductAdapter();
+    }
+
+    @Provides
+    @Singleton
+    public MainMenuAdapter providesMainMenuAdapter() {
+        return new MainMenuAdapter();
     }
 
 }

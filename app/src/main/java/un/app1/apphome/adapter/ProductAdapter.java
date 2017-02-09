@@ -36,14 +36,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.BindingH
         final ProductModel dataCity = productModels.get(holder.getAdapterPosition());
         holder.getBinding().setVariable(BR.productModel, dataCity);
         holder.getBinding().setProductModel(dataCity);
-        holder.getBinding().setClickProduct(new ProductClickHandler() {
-
-            @Override
-            public void onClick(View view) {
-                homeView.goToActivity();
-            }
-
-        });
+        holder.getBinding().setClickProduct(view -> homeView.goToActivity());
     }
 
     @BindingAdapter("imageResource")
@@ -60,16 +53,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.BindingH
         this.homeView = homeView;
     }
 
-    public static class BindingHolder extends RecyclerView.ViewHolder {
+    static class BindingHolder extends RecyclerView.ViewHolder {
 
         private ItemProductHomeBinding binding;
 
-        public BindingHolder(View rowView) {
+        BindingHolder(View rowView) {
             super(rowView);
             binding = DataBindingUtil.bind(rowView);
         }
 
-        public ItemProductHomeBinding getBinding() {
+        ItemProductHomeBinding getBinding() {
             return binding;
         }
     }

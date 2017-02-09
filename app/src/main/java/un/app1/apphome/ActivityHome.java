@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
@@ -47,6 +49,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     HomePresenter presenter;
     HomeViewModel viewModel;
     MainService mainService;
+    Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,8 +106,6 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         binding.bannerSlider.setVisibility(View.VISIBLE);
         binding.bannerSlider.startAnimation(alphaAnimation);
         binding.arcLoader.setVisibility(View.GONE);
-
-
     }
 
     @Override
@@ -196,7 +197,26 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
     @Override
     public void onNetworkConnectionChanged(boolean isConnected) {
+//        if(!isConnected){
+//            snackBar();
+//            presenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
+//            presenter.getQuickPreview(new SubmitQuickPreview("deviceId", "token"));
+//        } else {
+//            presenter.unSubscribe();
+//        }
+    }
 
+    private  void snackBar(){
+        snackbar = Snackbar
+                .make(binding.coordinatorLayout, "No Internet Connection", Snackbar.LENGTH_LONG)
+                .setAction("Close", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        snackbar.dismiss();
+                    }
+                });
+
+        snackbar.show();
     }
 
     @Override

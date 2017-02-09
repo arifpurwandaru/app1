@@ -18,271 +18,277 @@
 
     </data>
 
-    <RelativeLayout
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="un.app1.apphome.ActivityHome">
 
-        <FrameLayout
-            android:id="@+id/main_frame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
         <RelativeLayout
-            android:id="@+id/layoutBanner"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="@color/colorDarkWhite">
+            android:layout_height="match_parent">
 
-
-            <TextView
-                android:id="@+id/textRetry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:hint="Retry.."
-                android:onClick="@{() -> presenter.onClickRetry()}"
-                android:text="@{viewModel.clickRetry}"
-                android:textColor="@color/colorLightkWhite"
-                android:textSize="14sp"
-                android:visibility="gone" />
-
-            <ss.com.bannerslider.views.BannerSlider
-                android:id="@+id/banner_slider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                app:animateIndicators="false"
-                app:defaultBanner="1"
-                app:defaultIndicators="dash"
-                app:hideIndicators="true"
-                app:indicatorSize="10dp"
-                app:interval="6000"
-                app:loopSlides="true" />
-
-            <com.leo.simplearcloader.SimpleArcLoader
-                android:id="@+id/arcLoader"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:visibility="visible"
-                custom:arc_colors="@array/colorsArcLoader"
-                custom:arc_margin="3dp"
-                custom:arc_speed="medium"
-                custom:arc_style="simple_arc"
-                custom:arc_thickness="2dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/layoutHomeDashboard"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/layoutBanner"
-            android:background="@drawable/layout_dashboard">
+            <FrameLayout
+                android:id="@+id/main_frame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
             <RelativeLayout
-                android:id="@+id/layoutHomeDashboardChecking"
+                android:id="@+id/layoutBanner"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="160dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:background="@drawable/layout_dashboard"
-                android:visibility="gone">
+                android:layout_alignParentTop="true"
+                android:background="@color/colorDarkWhite">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/textRetry"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:text="Loading.." />
+                    android:hint="Retry.."
+                    android:onClick="@{() -> presenter.onClickRetry()}"
+                    android:text="@{viewModel.clickRetry}"
+                    android:textColor="@color/colorLightkWhite"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+                <ss.com.bannerslider.views.BannerSlider
+                    android:id="@+id/banner_slider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    app:animateIndicators="false"
+                    app:defaultBanner="1"
+                    app:defaultIndicators="dash"
+                    app:hideIndicators="true"
+                    app:indicatorSize="10dp"
+                    app:interval="6000"
+                    app:loopSlides="true" />
+
+                <com.leo.simplearcloader.SimpleArcLoader
+                    android:id="@+id/arcLoader"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:visibility="visible"
+                    custom:arc_colors="@array/colorsArcLoader"
+                    custom:arc_margin="3dp"
+                    custom:arc_speed="medium"
+                    custom:arc_style="simple_arc"
+                    custom:arc_thickness="2dp" />
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layoutHomeDashboardSignOut"
+                android:id="@+id/layoutHomeDashboard"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="60dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:background="@drawable/layout_dashboard"
-                android:gravity=""
-                android:padding="10dp"
-                android:visibility="visible">
-
-                <TextView
-                    android:id="@+id/textLogin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentStart="true"
-                    android:onClick="@{() -> presenter.onClickLogin()}"
-                    android:text="Login"
-                    android:textColor="@color/blue" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:text="Don't have an account, click login or register"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/textLogin"
-                    android:layout_marginStart="30dp"
-                    android:layout_toEndOf="@+id/textLogin"
-                    android:onClick="@{() -> presenter.onClickRegister()}"
-                    android:text="Register"
-                    android:textColor="@color/blue" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layoutHomeDashboardSignIn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:background="@drawable/layout_dashboard"
-                android:visibility="gone">
+                android:layout_below="@+id/layoutBanner"
+                android:background="@drawable/layout_dashboard">
 
                 <RelativeLayout
-                    android:id="@+id/layoutContentDashboard"
-                    android:layout_width="100dp"
+                    android:id="@+id/layoutHomeDashboardChecking"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:padding="5dp">
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/layout_dashboard"
+                    android:visibility="gone">
 
-                    <RelativeLayout
-                        android:id="@+id/layoutMenu"
-                        android:layout_width="40dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true">
-
-                        <ImageView
-                            android:id="@+id/imageView"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            fab:srcCompat="@drawable/ic_menu_1" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="40dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentTop="true"
-                        android:layout_toLeftOf="@+id/layoutMenu"
-                        android:layout_toStartOf="@+id/layoutMenu">
-
-                    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="Loading.." />
 
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/layoutUserOrLogo"
-                    android:layout_width="60dp"
+                    android:id="@+id/layoutHomeDashboardSignOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/layout_dashboard"
+                    android:gravity=""
+                    android:padding="10dp"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/textLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:onClick="@{() -> presenter.onClickLogin()}"
+                        android:text="Login"
+                        android:textColor="@color/blue" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:text="Don't have an account, click login or register"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/textLogin"
+                        android:layout_marginStart="30dp"
+                        android:layout_toEndOf="@+id/textLogin"
+                        android:onClick="@{() -> presenter.onClickRegister()}"
+                        android:text="Register"
+                        android:textColor="@color/blue" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutHomeDashboardSignIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/layout_dashboard"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:id="@+id/layoutContentDashboard"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:padding="5dp">
+
+                        <RelativeLayout
+                            android:id="@+id/layoutMenu"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true">
+
+                            <ImageView
+                                android:id="@+id/imageView"
+                                android:layout_width="38dp"
+                                android:layout_height="38dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                fab:srcCompat="@drawable/ic_menu_1" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentTop="true"
+                            android:layout_toLeftOf="@+id/layoutMenu"
+                            android:layout_toStartOf="@+id/layoutMenu">
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutUserOrLogo"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp">
+
+                        <com.mikhaellopez.circularimageview.CircularImageView
+                            android:id="@+id/image_user"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:scaleType="centerCrop"
+                            app:civ_border_color="#CADDDDDD"
+                            app:civ_border_width="0dp"
+                            app:civ_shadow="true"
+                            app:civ_shadow_color="#CADDDDDD"
+                            app:civ_shadow_radius="0" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/textUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/layoutUserOrLogo"
+                        android:layout_toRightOf="@+id/layoutUserOrLogo"
+                        android:hint="UserName"
+                        android:text="@{viewModel.userName}"
+                        android:textSize="13sp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutMainMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutHomeDashboard"
+                android:layout_centerHorizontal="true"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="0dp">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerMainMenu"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp">
+                    android:layout_alignParentTop="true"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:scrollbars="vertical" />
 
-                    <com.mikhaellopez.circularimageview.CircularImageView
-                        android:id="@+id/image_user"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:scaleType="centerCrop"
-                        app:civ_border_color="#CADDDDDD"
-                        app:civ_border_width="0dp"
-                        app:civ_shadow="true"
-                        app:civ_shadow_color="#CADDDDDD"
-                        app:civ_shadow_radius="0" />
-                </RelativeLayout>
+            </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/textUserName"
-                    android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/layoutMainContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/layoutMainMenu"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="10dp"
+                android:visibility="invisible">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerProduct"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/layoutUserOrLogo"
-                    android:layout_toRightOf="@+id/layoutUserOrLogo"
-                    android:hint="UserName"
-                    android:text="@{viewModel.userName}"
-                    android:textSize="13sp" />
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="31dp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:scrollbars="vertical" />
 
             </RelativeLayout>
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/layoutMainMenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutHomeDashboard"
-            android:layout_centerHorizontal="true"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:paddingTop="0dp">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerMainMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:clipToPadding="false"
-                android:nestedScrollingEnabled="false"
-                android:scrollbars="vertical" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/layoutMainContent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/layoutMainMenu"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:paddingTop="10dp"
-            android:visibility="invisible">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerProduct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="31dp"
-                android:clipToPadding="false"
-                android:nestedScrollingEnabled="false"
-                android:scrollbars="vertical" />
-
-        </RelativeLayout>
-
-    </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
 
 </layout>

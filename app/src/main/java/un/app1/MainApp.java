@@ -31,7 +31,7 @@ public class MainApp extends Application {
     }
 
     public void setConnectivityListener(ConnectivityReceiver.ConnectivityReceiverListener listener) {
-
+        ConnectivityReceiver.connectivityReceiverListener = listener;
     }
 
 }

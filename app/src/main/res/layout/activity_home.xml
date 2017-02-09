@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -36,17 +37,6 @@
             android:layout_alignParentTop="true"
             android:background="@color/colorDarkWhite">
 
-            <ss.com.bannerslider.views.BannerSlider
-                android:id="@+id/banner_slider"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:defaultBanner="1"
-                app:animateIndicators="false"
-                app:defaultIndicators="dash"
-                app:hideIndicators="true"
-                app:indicatorSize="10dp"
-                app:interval="6000"
-                app:loopSlides="true" />
 
             <TextView
                 android:id="@+id/textRetry"
@@ -58,7 +48,35 @@
                 android:text="@{viewModel.clickRetry}"
                 android:textColor="@color/colorLightkWhite"
                 android:textSize="14sp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:onClick="@{() -> presenter.onClickRetry()}"/>
+
+            <ss.com.bannerslider.views.BannerSlider
+                android:id="@+id/banner_slider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                app:defaultBanner="1"
+                app:animateIndicators="false"
+                app:defaultIndicators="dash"
+                app:hideIndicators="true"
+                app:indicatorSize="10dp"
+                app:interval="6000"
+                app:loopSlides="true" />
+
+            <com.leo.simplearcloader.SimpleArcLoader
+                android:id="@+id/arcLoader"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:visibility="visible"
+                custom:arc_colors="@array/colorsArcLoader"
+                custom:arc_margin="3dp"
+                custom:arc_speed="medium"
+                custom:arc_style="simple_arc"
+                custom:arc_thickness="2dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
 
         </RelativeLayout>
 
@@ -108,7 +126,8 @@
                     android:id="@+id/textLogin"
                     android:textColor="@color/blue"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:onClick="@{() -> presenter.onClickLogin()}"/>
 
                 <TextView
                     android:text="Don't have an account, click login or register"
@@ -127,7 +146,8 @@
                     android:layout_toEndOf="@+id/textLogin"
                     android:layout_marginStart="30dp"
                     android:textColor="@color/blue"
-                    android:id="@+id/textView3" />
+                    android:id="@+id/textView3"
+                    android:onClick="@{() -> presenter.onClickRegister()}"/>
             </RelativeLayout>
 
             <RelativeLayout

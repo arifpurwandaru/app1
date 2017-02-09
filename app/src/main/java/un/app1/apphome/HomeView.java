@@ -33,4 +33,10 @@ public interface HomeView {
     void animFadeInSignIn();
 
     void animFadeInBanner();
+
+    void onClickRetry();
+
+    void onClickLogin();
+
+    void onClickRegister();
 }

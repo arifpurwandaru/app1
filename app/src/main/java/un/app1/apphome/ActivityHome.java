@@ -5,7 +5,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
@@ -14,16 +13,10 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import rebus.permissionutils.AskAgainCallback;
-import rebus.permissionutils.FullCallback;
-import rebus.permissionutils.PermissionEnum;
-import rebus.permissionutils.PermissionManager;
-import ss.com.bannerslider.events.OnBannerClickListener;
 import un.app1.MainApp;
 import un.app1.R;
 import un.app1.apphome.adapter.ProductAdapter;
@@ -70,36 +63,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
         setAdapter();
         onClickBanner();
-        onClickLogin();
 
-    }
-
-    private void onClickLogin(){
-        binding.textLogin.setOnClickListener((View v) -> {
-            startActivityForResult(new Intent(ActivityHome.this, ActivityLogin.class), 1);
-        });
-    }
-
-    private void onClickRetry(){
-        binding.textRetry.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                presenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
-            }
-        });
-    }
-
-    private void onClickBanner(){
-        binding.bannerSlider.setHideIndicators(false);
-        binding.bannerSlider.setHideIndicators(true);
-        binding.bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
-
-            @Override
-            public void onClick(int position) {
-                Toast.makeText(ActivityHome.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void setAdapter(){
@@ -126,6 +90,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         alphaAnimation.setRepeatMode(Animation.REVERSE);
         binding.bannerSlider.setVisibility(View.VISIBLE);
         binding.bannerSlider.startAnimation(alphaAnimation);
+        binding.arcLoader.setVisibility(View.GONE);
     }
 
     @Override
@@ -137,6 +102,27 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     public void onDestroy(){
         presenter.unSubscribe();
         super.onDestroy();
+    }
+
+    @Override
+    public void onClickLogin(){
+        startActivityForResult(new Intent(ActivityHome.this, ActivityLogin.class), 1);
+    }
+
+    @Override
+    public void onClickRegister() {
+        startActivityForResult(new Intent(ActivityHome.this, ActivityLogin.class), 1);
+    }
+
+    @Override
+    public void onClickRetry(){
+        presenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
+    }
+
+    private void onClickBanner(){
+        binding.bannerSlider.setHideIndicators(false);
+        binding.bannerSlider.setHideIndicators(true);
+        binding.bannerSlider.setOnBannerClickListener(position -> Toast.makeText(ActivityHome.this, String.valueOf(position), Toast.LENGTH_SHORT).show());
     }
 
     @Override

@@ -88,6 +88,18 @@ public class HomePresenter {
         }
     }
 
+    public void onClickRetry(){
+        homeView.onClickRetry();
+    }
+
+    public void onClickLogin() {
+        homeView.onClickLogin();
+    }
+
+    public void onClickRegister() {
+        homeView.onClickRegister();
+    }
+
     void unSubscribe() {
         subscriptions.unsubscribe();
     }

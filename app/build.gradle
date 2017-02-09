@@ -70,4 +70,5 @@ dependencies {
 
     compile 'com.maksim88:PasswordEditText:v0.9'
     compile 'rebus:permission-utils:1.0.7'
+    compile 'com.leo.simplearcloader:simplearcloader:1.0.+'
 }

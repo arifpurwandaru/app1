@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">app1</string>
+
+    <array name="colorsArcLoader">
+        <item>@color/blue_grey</item>
+    </array>
 </resources>

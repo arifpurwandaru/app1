@@ -39,4 +39,12 @@ public interface HomeView {
     void onClickLogin();
 
     void onClickRegister();
+
+    void snackBar();
+
+    void ifBannerFailed();
+
+    void arcLoaderGone();
+
+    void arcLoaderVisible();
 }

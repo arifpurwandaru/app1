@@ -3,12 +3,10 @@ package un.app1.apphome;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
@@ -49,7 +47,6 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     HomePresenter presenter;
     HomeViewModel viewModel;
     MainService mainService;
-    Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +72,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
     }
 
-    private void setAdapter(){
+    private void setAdapter() {
         productAdapter.setViewData(ActivityHome.this);
         productAdapter.setProduct(presenter.getProduct());
         binding.recyclerProduct.setLayoutManager(new GridLayoutManager(ActivityHome.this, 3));
@@ -89,7 +86,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     }
 
     @Override
-    public void animFadeInSignIn(){
+    public void animFadeInSignIn() {
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
         alphaAnimation.setDuration(700);
         alphaAnimation.setRepeatCount(0);
@@ -98,29 +95,28 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     }
 
     @Override
-    public void animFadeInBanner(){
+    public void animFadeInBanner() {
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
         alphaAnimation.setDuration(700);
         alphaAnimation.setRepeatCount(0);
         alphaAnimation.setRepeatMode(Animation.REVERSE);
         binding.bannerSlider.setVisibility(View.VISIBLE);
         binding.bannerSlider.startAnimation(alphaAnimation);
-        binding.arcLoader.setVisibility(View.GONE);
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         presenter.unSubscribe();
         super.onDestroy();
     }
 
     @Override
-    public void onClickLogin(){
+    public void onClickLogin() {
         startActivityForResult(new Intent(ActivityHome.this, ActivityLogin.class), 1);
     }
 
@@ -130,18 +126,18 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     }
 
     @Override
-    public void onClickRetry(){
+    public void onClickRetry() {
         presenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
     }
 
-    private void onClickBanner(){
+    private void onClickBanner() {
         binding.bannerSlider.setHideIndicators(false);
         binding.bannerSlider.setHideIndicators(true);
         binding.bannerSlider.setOnBannerClickListener(position -> Toast.makeText(ActivityHome.this, String.valueOf(position), Toast.LENGTH_SHORT).show());
     }
 
     @Override
-    public void setShowUserImage(){
+    public void setShowUserImage() {
         Picasso.with(ActivityHome.this)
                 .load(viewModel.getUserImage())
                 .placeholder(R.drawable.ic_user)
@@ -197,26 +193,27 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
     @Override
     public void onNetworkConnectionChanged(boolean isConnected) {
-//        if(!isConnected){
-//            snackBar();
-//            presenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
-//            presenter.getQuickPreview(new SubmitQuickPreview("deviceId", "token"));
-//        } else {
-//            presenter.unSubscribe();
-//        }
+        presenter.checkInternet(isConnected);
     }
 
-    private  void snackBar(){
-        snackbar = Snackbar
-                .make(binding.coordinatorLayout, "No Internet Connection", Snackbar.LENGTH_LONG)
-                .setAction("Close", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        snackbar.dismiss();
-                    }
-                });
+    @Override
+    public void snackBar() {
+        Snackbar.make(binding.coordinatorLayout, getResources().getString(R.string.strConnectionLost), Snackbar.LENGTH_LONG).show();
+    }
 
-        snackbar.show();
+    @Override
+    public void arcLoaderGone() {
+        binding.arcLoader.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void arcLoaderVisible() {
+        binding.arcLoader.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void ifBannerFailed() {
+        presenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
     }
 
     @Override
@@ -231,7 +228,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         presenter.unSubscribe();
         super.onBackPressed();
     }

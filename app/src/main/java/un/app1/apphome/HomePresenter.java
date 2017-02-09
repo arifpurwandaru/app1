@@ -26,7 +26,8 @@ public class HomePresenter {
     private HomeView homeView;
     private MainService service;
     private CompositeSubscription subscriptions;
-    Context context;
+    private Context context;
+    private int banner = 0;
 
     HomePresenter(Activity activity, HomeView homeView, MainService service) {
         this.homeView = homeView;
@@ -45,17 +46,28 @@ public class HomePresenter {
 
     ArrayList<MainMenuModel> getMainMenu() {
         ArrayList<MainMenuModel> mainMenuModel = new ArrayList<>();
-        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strTokenListrik)));
-        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strPulsa)));
-        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strVoucherGame)));
-        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strTiketKereta)));
-        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strHotel)));
-        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strTiketPesawat)));
-        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strBPJS)));
-        mainMenuModel.add(new MainMenuModel(context.getResources().getString (R.string.strTopUpSaldo)));
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString(R.string.strTokenListrik)));
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString(R.string.strPulsa)));
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString(R.string.strVoucherGame)));
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString(R.string.strTiketKereta)));
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString(R.string.strHotel)));
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString(R.string.strTiketPesawat)));
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString(R.string.strBPJS)));
+        mainMenuModel.add(new MainMenuModel(context.getResources().getString(R.string.strTopUpSaldo)));
         return mainMenuModel;
     }
 
+    void checkInternet(boolean status) {
+        if (!status) {
+            homeView.arcLoaderGone();
+            homeView.snackBar();
+        } else {
+            if (banner == 0) {
+                homeView.arcLoaderVisible();
+                homeView.ifBannerFailed();
+            }
+        }
+    }
 
     void getHomeBanner(SubmitBanner submitBanner) {
         Subscription subscription = service.requestBanner(submitBanner, new MyCallBack.CallBanner() {
@@ -101,13 +113,15 @@ public class HomePresenter {
     }
 
     void setBanner(BannerSlider bannerSlider, List<ArrayBanner> arrayBanners) {
+        banner = arrayBanners.size();
+        homeView.arcLoaderGone();
         homeView.animFadeInBanner();
         for (int i = 0; i < arrayBanners.size(); i++) {
             bannerSlider.addBanner(new RemoteBanner(arrayBanners.get(i).url));
         }
     }
 
-    public void onClickRetry(){
+    public void onClickRetry() {
         homeView.onClickRetry();
     }
 

@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
@@ -19,6 +20,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import rebus.permissionutils.AskAgainCallback;
+import rebus.permissionutils.PermissionEnum;
+import rebus.permissionutils.PermissionManager;
+import rebus.permissionutils.SmartCallback;
 import un.app1.MainApp;
 import un.app1.R;
 import un.app1.apphome.adapter.MainMenuAdapter;
@@ -68,7 +73,33 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
         setAdapter();
         onClickBanner();
+        askPermission();
 
+    }
+
+
+    private void askPermission(){
+        PermissionManager.with(this)
+                .key(2100)
+                .permission(PermissionEnum.READ_PHONE_STATE,
+                        PermissionEnum.WRITE_EXTERNAL_STORAGE,
+                        PermissionEnum.ACCESS_COARSE_LOCATION,
+                        PermissionEnum.ACCESS_FINE_LOCATION,
+                        PermissionEnum.READ_SMS)
+                .askAgain(true)
+                .askAgainCallback(new AskAgainCallback() {
+                    @Override
+                    public void showRequestPermission(UserResponse response) {
+                        Log.e("app", "response= " + response);
+                    }
+                })
+                .callback(new SmartCallback() {
+                    @Override
+                    public void result(boolean allPermissionsGranted, boolean somePermissionsDeniedForever) {
+
+                    }
+                })
+                .ask();
     }
 
     private void setAdapter() {

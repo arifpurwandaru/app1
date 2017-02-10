@@ -33,17 +33,24 @@ public class LoginPresenter {
     }
 
     void checkFirst(String deviceid, String userName, String password){
+        loginView.animFadeOutTextAlert();
         if(userName.isEmpty() && password.isEmpty()){
-            loginView.setError("Email or Password is Empty");
+            loginView.setTextAlert("Email or Password is Empty");
+            loginView.animFadeInTextAlert();
         } else if(userName.isEmpty()){
-            loginView.setError("Email Cannot be Empty");
+            loginView.setTextAlert("Email Cannot be Empty");
+            loginView.animFadeInTextAlert();
         } else if(password.isEmpty()){
-            loginView.setError("Password Cannot be Empty");
+            loginView.setTextAlert("Password Cannot be Empty");
+            loginView.animFadeInTextAlert();
         } else {
             if(isValidEmail(userName)){
                 getLogin(new SubmitLogin(deviceid, userName, password));
+                loginView.animFadeOutTextLogin();
+                loginView.animFadeInArcLoader();
             } else {
-                loginView.setError("Ooops! Your email is invalid");
+                loginView.setTextAlert("Ooops! Your email is invalid");
+                loginView.animFadeInTextAlert();
             }
         }
     }
@@ -58,12 +65,18 @@ public class LoginPresenter {
 
             @Override
             public void onError(String error) {
-                Log.e("x", "> "+ error);
+                loginView.animFadeOutArcLoader();
+                loginView.animFadeInTextLogin();
+                loginView.setTextAlert(error);
+                loginView.animFadeInTextLogin();
             }
 
             @Override
             public void onSuccess(DataLogin dataLogin) {
-                Log.e("x", "> "+ dataLogin.message + " " + dataLogin.statusLogin + " " + dataLogin.token);
+                loginView.animFadeOutArcLoader();
+                loginView.animFadeInTextLogin();
+                loginView.animFadeInTextAlert();
+                loginView.setTextAlert("> "+ dataLogin.message + " " + dataLogin.statusLogin + " " + dataLogin.token);
             }
         });
 

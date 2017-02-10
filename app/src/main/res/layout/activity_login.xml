@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -80,6 +81,19 @@
                 android:layout_centerVertical="true"
                 android:text="LOGIN"
                 android:textColor="@color/grey" />
+
+            <com.leo.simplearcloader.SimpleArcLoader
+                android:id="@+id/arcLoader"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                custom:arc_colors="@array/colorsArcLoader"
+                custom:arc_margin="3dp"
+                custom:arc_speed="medium"
+                custom:arc_style="simple_arc"
+                custom:arc_thickness="2dp" />
         </RelativeLayout>
 
         <TextView
@@ -90,6 +104,19 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="70dp"
             android:id="@+id/textView6" />
+
+        <TextView
+            android:text="alert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/textAlert"
+            android:textColor="@color/grey"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/layoutClose"
+            android:layout_alignStart="@+id/input_email" />
     </RelativeLayout>
 
 

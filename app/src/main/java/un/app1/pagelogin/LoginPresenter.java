@@ -29,7 +29,7 @@ public class LoginPresenter {
 
     void checkFirst(String deviceid, String userName, String password) {
         loginView.setDisableButtonLogin();
-        loginView.animFadeOutTextAlert();
+        loginView.animFadeInTextAlert();
         if (userName.isEmpty() && password.isEmpty()) {
             loginView.setTextAlert("Email or Password is Empty");
             loginView.animFadeInTextAlert();
@@ -73,7 +73,7 @@ public class LoginPresenter {
                 loginView.animFadeOutArcLoader();
                 loginView.animFadeInTextLogin();
                 loginView.animFadeInTextAlert();
-                loginView.onCloseActivity();
+                loginView.onResponseOk();
 
             }
         });

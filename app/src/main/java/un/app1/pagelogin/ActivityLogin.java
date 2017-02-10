@@ -181,6 +181,12 @@ public class ActivityLogin extends AppCompatActivity implements LoginView, Conne
     }
 
     @Override
+    public void onResponseOk() {
+        returnActivityOk();
+        hideSoftKeyboard();
+    }
+
+    @Override
     public void onBackPressed() {
         presenter.unSubscribe();
         returnActivityCanceled();

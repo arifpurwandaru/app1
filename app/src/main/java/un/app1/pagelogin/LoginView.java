@@ -28,4 +28,6 @@ public interface LoginView {
 
     boolean isValidEmail(CharSequence target);
 
+    void onResponseOk();
+
 }

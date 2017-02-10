@@ -44,7 +44,8 @@ public class AppWelcome extends WelcomeActivity {
                         .background(R.color.blue_background)
                 )
 
-                .swipeToDismiss(true)
+                .swipeToDismiss(false)
+                .canSkip(false)
                 .exitAnimation(android.R.anim.fade_out)
                 .build();
     }

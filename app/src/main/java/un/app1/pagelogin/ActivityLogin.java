@@ -176,7 +176,8 @@ public class ActivityLogin extends AppCompatActivity implements LoginView, Conne
 
     @Override
     public void onCloseActivity() {
-        returnActivityOk();
+        returnActivityCanceled();
+        hideSoftKeyboard();
     }
 
     @Override

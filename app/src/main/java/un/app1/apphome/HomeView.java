@@ -63,4 +63,6 @@ public interface HomeView {
     void goToMenuActivity(int position);
 
     void splashFirstRun();
+
+    void askPermission();
 }

@@ -21,6 +21,7 @@ import un.app1.apphome.model.SubmitBanner;
 import un.app1.apphome.model.SubmitQuickPreview;
 import un.app1.network.service.MainService;
 import un.app1.network.service.MyCallBack;
+import un.app1.pagelistrik.ActivityListrik;
 
 public class HomePresenter {
 
@@ -42,6 +43,13 @@ public class HomePresenter {
     ArrayList<ProductModel> getProduct() {
         ArrayList<ProductModel> productModels = new ArrayList<>();
         productModels.add(new ProductModel(R.drawable.ic_menu_1, "xxxxxx"));
+        productModels.add(new ProductModel(R.drawable.ic_menu_2, "xxxxxx"));
+        productModels.add(new ProductModel(R.drawable.ic_menu_2, "xxxxxx"));
+        productModels.add(new ProductModel(R.drawable.ic_menu_2, "xxxxxx"));
+        productModels.add(new ProductModel(R.drawable.ic_menu_2, "xxxxxx"));
+        productModels.add(new ProductModel(R.drawable.ic_menu_2, "xxxxxx"));
+        productModels.add(new ProductModel(R.drawable.ic_menu_2, "xxxxxx"));
+        productModels.add(new ProductModel(R.drawable.ic_menu_2, "xxxxxx"));
         productModels.add(new ProductModel(R.drawable.ic_menu_2, "xxxxxx"));
         productModels.add(new ProductModel(R.drawable.ic_menu_2, "xxxxxx"));
         return productModels;
@@ -138,21 +146,21 @@ public class HomePresenter {
 
     void toActivity(int position){
         if(position == 0){
-
+            context.startActivity(new Intent(context, ActivityListrik.class));
         } else if(position == 1){
-
+            context.startActivity(new Intent(context, ActivityListrik.class));
         } else if(position == 2){
-
+            context.startActivity(new Intent(context, ActivityListrik.class));
         } else if(position == 3){
-
+            context.startActivity(new Intent(context, ActivityListrik.class));
         } else if(position == 4){
-
+            context.startActivity(new Intent(context, ActivityListrik.class));
         } else if(position == 5){
-
+            context.startActivity(new Intent(context, ActivityListrik.class));
         } else if(position == 6){
-
+            context.startActivity(new Intent(context, ActivityListrik.class));
         } else if(position == 7){
-
+            context.startActivity(new Intent(context, ActivityListrik.class));
         }
     }
 
@@ -168,9 +176,9 @@ public class HomePresenter {
         }
         if (requestCode == ActivityHome.WELCOME_SCREEN) {
             if(resultCode == Activity.RESULT_OK){
-
+                homeView.askPermission();
             } else if (resultCode == Activity.RESULT_CANCELED) {
-
+                homeView.askPermission();
             }
         }
     }

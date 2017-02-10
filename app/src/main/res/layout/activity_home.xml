@@ -101,7 +101,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:background="@drawable/layout_dashboard"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                 </RelativeLayout>
 
@@ -173,7 +173,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:background="@drawable/layout_dashboard"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <RelativeLayout
                         android:id="@+id/layoutContentDashboard"
@@ -245,12 +245,13 @@
             <RelativeLayout
                 android:id="@+id/layoutMainMenu"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_below="@+id/layoutHomeDashboard"
                 android:layout_centerHorizontal="true"
                 android:paddingLeft="2dp"
                 android:paddingRight="2dp"
-                android:paddingTop="0dp">
+                android:paddingTop="0dp"
+                android:gravity="center">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerMainMenu"
@@ -271,21 +272,32 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/layoutMainMenu"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp"
-                android:paddingTop="10dp"
-                android:visibility="invisible">
+                android:visibility="visible">
+
+                <TextView
+                    android:text="Content Home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView4"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/blue_grey"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerProduct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginBottom="31dp"
+                    android:layout_marginTop="5dp"
                     android:clipToPadding="false"
                     android:nestedScrollingEnabled="false"
-                    android:scrollbars="vertical" />
+                    android:scrollbars="vertical"
+                    android:visibility="visible"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:layout_below="@+id/textView4"
+                    android:layout_alignParentStart="true" />
 
             </RelativeLayout>
 

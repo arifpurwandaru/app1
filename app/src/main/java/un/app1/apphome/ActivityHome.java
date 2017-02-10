@@ -81,10 +81,10 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         splashFirstRun();
         setAdapter();
         onClickBanner();
-        askPermission();
     }
 
-    private void askPermission(){
+    @Override
+    public void askPermission(){
         PermissionManager.with(this)
                 .key(101)
                 .permission(PermissionEnum.READ_PHONE_STATE,
@@ -116,7 +116,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     private void setAdapter() {
         productAdapter.setViewData(ActivityHome.this);
         productAdapter.setProduct(presenter.getProduct());
-        binding.recyclerProduct.setLayoutManager(new GridLayoutManager(ActivityHome.this, 3));
+        binding.recyclerProduct.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.recyclerProduct.setAdapter(productAdapter);
 
         menuAdapter.setViewData(ActivityHome.this);

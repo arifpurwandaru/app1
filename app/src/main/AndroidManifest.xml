@@ -42,6 +42,10 @@
             android:name=".pagelogin.ActivityLogin"
             android:theme="@style/AppFullScreenTheme" />
 
+        <activity
+            android:name=".pagelistrik.ActivityListrik"
+            android:theme="@style/AppFullScreenTheme" />
+
     </application>
 
 </manifest>

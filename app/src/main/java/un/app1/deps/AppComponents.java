@@ -15,4 +15,5 @@ public interface AppComponents {
     void inject(ActivityHome activityHome);
 
     void inject(ActivityLogin activitylogin);
+
 }

@@ -61,14 +61,14 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                    android:visibility="gone"
                     app:animateIndicators="false"
                     app:defaultBanner="1"
                     app:defaultIndicators="dash"
                     app:hideIndicators="true"
                     app:indicatorSize="10dp"
                     app:interval="6000"
-                    app:loopSlides="true"
-                    android:visibility="gone"/>
+                    app:loopSlides="true" />
 
                 <com.leo.simplearcloader.SimpleArcLoader
                     android:id="@+id/arcLoader"

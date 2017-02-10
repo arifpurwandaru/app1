@@ -36,7 +36,7 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.Bindin
         final MainMenuModel dataCity = mainMenuModels.get(holder.getAdapterPosition());
         holder.getBinding().setVariable(BR.mainMenuModel, dataCity);
         holder.getBinding().setMainMenuModel(dataCity);
-        holder.getBinding().setClickMenu(view -> homeView.goToMenuActivity(dataCity.titleMenu + " position = " + position));
+        holder.getBinding().setClickMenu(view -> homeView.goToMenuActivity( position));
     }
 
     public void setMainMenu(List<MainMenuModel> mainMenuModels) {

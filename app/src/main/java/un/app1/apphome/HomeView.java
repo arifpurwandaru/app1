@@ -60,5 +60,7 @@ public interface HomeView {
 
     void userPreview();
 
-    void goToMenuActivity(String menu);
+    void goToMenuActivity(int position);
+
+    void splashFirstRun();
 }

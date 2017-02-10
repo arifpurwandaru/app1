@@ -1,6 +1,5 @@
 package un.app1.apphome;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -16,6 +15,7 @@ import android.view.animation.Animation;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+import com.stephentuso.welcome.WelcomeHelper;
 
 import java.util.List;
 
@@ -37,6 +37,7 @@ import un.app1.network.internet.ConnectivityReceiver;
 import un.app1.network.service.MainService;
 import un.app1.network.service.RetBuilder;
 import un.app1.pagelogin.ActivityLogin;
+import un.app1.splash.AppWelcome;
 
 public class ActivityHome extends AppCompatActivity implements HomeView, ConnectivityReceiver.ConnectivityReceiverListener {
 
@@ -56,7 +57,8 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
     boolean islogin = false;
 
-    int REQUEST_CODE_LOGIN = 1;
+    static int REQUEST_CODE_LOGIN = 1;
+    static int WELCOME_SCREEN = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,17 +76,17 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         binding.setPresenter(presenter);
 
         presenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
-        presenter.isUserLogin(ActivityHome.this, islogin);
+        presenter.isUserLogin(islogin);
 
+        splashFirstRun();
         setAdapter();
         onClickBanner();
         askPermission();
-
     }
 
     private void askPermission(){
         PermissionManager.with(this)
-                .key(2100)
+                .key(101)
                 .permission(PermissionEnum.READ_PHONE_STATE,
                         PermissionEnum.WRITE_EXTERNAL_STORAGE,
                         PermissionEnum.ACCESS_COARSE_LOCATION,
@@ -106,6 +108,11 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
                 .ask();
     }
 
+    @Override
+    public void splashFirstRun(){
+        new WelcomeHelper(ActivityHome.this, AppWelcome.class).forceShow(WELCOME_SCREEN);
+    }
+
     private void setAdapter() {
         productAdapter.setViewData(ActivityHome.this);
         productAdapter.setProduct(presenter.getProduct());
@@ -125,9 +132,8 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     }
 
     @Override
-    public void goToMenuActivity(String menu) {
-        Toast.makeText(ActivityHome.this, menu,
-                Toast.LENGTH_SHORT).show();
+    public void goToMenuActivity(int position) {
+        presenter.toActivity(position);
     }
 
     @Override
@@ -237,7 +243,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         Picasso.with(ActivityHome.this)
                 .load(viewModel.getUserImage())
                 .placeholder(R.drawable.ic_user)
-                .resize(300, 300)
+                .resize(350, 350)
                 .into(binding.imageUser);
     }
 
@@ -331,16 +337,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        if (requestCode == REQUEST_CODE_LOGIN) {
-            if(resultCode == Activity.RESULT_OK){
-                islogin = true;
-                //String result = data.getStringExtra("result");
-                presenter.isUserLogin(ActivityHome.this, islogin);
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-
-            }
-        }
+        presenter.forResult(requestCode, resultCode, data);
     }
 
     @Override

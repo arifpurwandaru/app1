@@ -2,6 +2,7 @@ package un.app1.apphome;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class HomePresenter {
     private Context context;
     private int banner = 0;
     private int statusUserPreview = 0;
-    private boolean islogin = false;
+    boolean islogin = false;
 
     HomePresenter(Activity activity, HomeView homeView, MainService service) {
         this.homeView = homeView;
@@ -80,7 +81,7 @@ public class HomePresenter {
         }
     }
 
-    void isUserLogin(Activity activity, boolean islogin){
+    void isUserLogin(boolean islogin){
         if(islogin){
             homeView.userPreview();
         } else {
@@ -135,9 +136,43 @@ public class HomePresenter {
         subscriptions.add(subscription);
     }
 
-    @SuppressWarnings("unused")
-    void checkUserLogin() {
-        homeView.setUserName("Login or Signup");
+    void toActivity(int position){
+        if(position == 0){
+
+        } else if(position == 1){
+
+        } else if(position == 2){
+
+        } else if(position == 3){
+
+        } else if(position == 4){
+
+        } else if(position == 5){
+
+        } else if(position == 6){
+
+        } else if(position == 7){
+
+        }
+    }
+
+    void forResult(int requestCode, int resultCode, Intent data){
+        if (requestCode == ActivityHome.REQUEST_CODE_LOGIN) {
+            if(resultCode == Activity.RESULT_OK){
+                islogin = true;
+                //String result = data.getStringExtra("result");
+                isUserLogin(islogin);
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+
+            }
+        }
+        if (requestCode == ActivityHome.WELCOME_SCREEN) {
+            if(resultCode == Activity.RESULT_OK){
+
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+
+            }
+        }
     }
 
     void setBanner(BannerSlider bannerSlider, List<ArrayBanner> arrayBanners) {

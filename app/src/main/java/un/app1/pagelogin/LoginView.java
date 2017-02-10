@@ -20,4 +20,12 @@ public interface LoginView {
 
     void animFadeOutArcLoader();
 
+    void setEnableButtonLogin();
+
+    void setDisableButtonLogin();
+
+    void hideSoftKeyboard();
+
+    boolean isValidEmail(CharSequence target);
+
 }

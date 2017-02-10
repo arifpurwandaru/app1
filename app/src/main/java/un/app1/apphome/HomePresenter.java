@@ -80,7 +80,7 @@ public class HomePresenter {
         }
     }
 
-    void isUserLogin(Activity activity){
+    void isUserLogin(Activity activity, boolean islogin){
         if(islogin){
             homeView.userPreview();
         } else {

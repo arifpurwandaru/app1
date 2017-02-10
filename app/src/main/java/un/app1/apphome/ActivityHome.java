@@ -1,5 +1,6 @@
 package un.app1.apphome;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -53,6 +54,10 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     HomeViewModel viewModel;
     MainService mainService;
 
+    boolean islogin = false;
+
+    int REQUEST_CODE_LOGIN = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,14 +74,13 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
         binding.setPresenter(presenter);
 
         presenter.getHomeBanner(new SubmitBanner("deviceId", "token"));
-        presenter.isUserLogin(ActivityHome.this);
+        presenter.isUserLogin(ActivityHome.this, islogin);
 
         setAdapter();
         onClickBanner();
         askPermission();
 
     }
-
 
     private void askPermission(){
         PermissionManager.with(this)
@@ -209,7 +213,7 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
 
     @Override
     public void onClickLogin() {
-        startActivityForResult(new Intent(ActivityHome.this, ActivityLogin.class), 1);
+        startActivityForResult(new Intent(ActivityHome.this, ActivityLogin.class), REQUEST_CODE_LOGIN);
     }
 
     @Override
@@ -323,6 +327,20 @@ public class ActivityHome extends AppCompatActivity implements HomeView, Connect
     @Override
     public void hideClickRetry() {
         binding.textRetry.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == REQUEST_CODE_LOGIN) {
+            if(resultCode == Activity.RESULT_OK){
+                islogin = true;
+                //String result = data.getStringExtra("result");
+                presenter.isUserLogin(ActivityHome.this, islogin);
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+
+            }
+        }
     }
 
     @Override

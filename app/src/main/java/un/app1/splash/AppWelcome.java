@@ -7,10 +7,6 @@ import com.stephentuso.welcome.WelcomeConfiguration;
 
 import un.app1.R;
 
-/**
- * Created by fajar on 2/10/17.
- */
-
 public class AppWelcome extends WelcomeActivity {
 
     @Override
@@ -18,39 +14,23 @@ public class AppWelcome extends WelcomeActivity {
         return new WelcomeConfiguration.Builder(this)
                 .defaultTitleTypefacePath("Montserrat-Bold.ttf")
                 .defaultHeaderTypefacePath("Montserrat-Bold.ttf")
-
                 .page(new BasicPage(R.drawable.ic_front_desk_white,
-                        "Welcome",
-                        "An Android library for onboarding, instructional screens, and more")
+                        getResources().getString(R.string.strTitlePageOne),
+                        getResources().getString(R.string.strDescriptionPageOne))
                         .background(R.color.orange_background)
-                )
-
-                .page(new BasicPage(R.drawable.ic_thumb_up_white,
-                        "Simple to use",
-                        "Add a welcome screen to your app with only a few lines of code.")
+                ).page(new BasicPage(R.drawable.ic_thumb_up_white,
+                        getResources().getString(R.string.strTitlePageTwo),
+                        getResources().getString(R.string.strDescriptionPageTwo))
                         .background(R.color.red_background)
-                )
-
-                .page(new ParallaxPage(R.layout.parallax_example,
-                        "Easy parallax",
-                        "Supply a layout and parallax effects will automatically be applied")
+                ).page(new ParallaxPage(R.layout.parallax_example,
+                        getResources().getString(R.string.strTitlePageThree),
+                        getResources().getString(R.string.strDescriptionPageThree))
                         .lastParallaxFactor(2f)
                         .background(R.color.purple_background)
-                )
-
-                .page(new BasicPage(R.drawable.ic_edit_white,
-                        "Customizable",
-                        "All elements of the welcome screen can be customized easily.")
-                        .background(R.color.blue_background)
-                )
-
-                .swipeToDismiss(false)
+                ).swipeToDismiss(false)
                 .canSkip(false)
                 .exitAnimation(android.R.anim.fade_out)
                 .build();
     }
 
-    public static String welcomeKey() {
-        return "WelcomeScreen";
-    }
 }

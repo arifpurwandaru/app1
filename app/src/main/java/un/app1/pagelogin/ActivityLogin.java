@@ -41,7 +41,7 @@ public class ActivityLogin extends AppCompatActivity implements LoginView, Conne
 
         binding = DataBindingUtil.setContentView(ActivityLogin.this, R.layout.activity_login);
         mainService = new MainService(retBuilder.service());
-        presenter = new LoginPresenter(ActivityLogin.this, mainService);
+        presenter = new LoginPresenter(ActivityLogin.this, ActivityLogin.this, mainService);
         binding.setPresenter(presenter);
 
     }

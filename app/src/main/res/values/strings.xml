@@ -11,5 +11,29 @@
     <string name="strTopUpSaldo">Top Up Saldo</string>
     <string name="strConnectionLost">Connection Lost..</string>
 
+    // Login
+    <string name="strEmptyEmailorPassword">Email or Password is Empty</string>
+    <string name="strEmailEmpty">Email Cannot be Empty</string>
+    <string name="strPasswordEmpty">Password Cannot be Empty.</string>
+    <string name="strInvalidPassword">Ooops! Your email is invalid</string>
 
+    // welcame screen
+    <string name="strTitlePageOne">title</string>
+    <string name="strDescriptionPageOne">description</string>
+    <string name="strTitlePageTwo">title</string>
+    <string name="strDescriptionPageTwo">description</string>
+    <string name="strTitlePageThree">title</string>
+    <string name="strDescriptionPageThree">description</string>
+    <string name="strTitlePageFour">title</string>
+    <string name="strDescriptionPageFour">description</string>
+    <string name="strTitlePageFive">title</string>
+    <string name="strDescriptionPageFive">description</string>
+    <string name="strTitlePageSix">title</string>
+    <string name="strDescriptionPageSix">description</string>
+    <string name="strTitlePageSeven">title</string>
+    <string name="strDescriptionPageSeven">description</string>
+    <string name="strTitlePageEight">title</string>
+    <string name="strDescriptionPageEight">description</string>
+    //---
+    --
 </resources>
